@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../assets/logo.png'
 import './Header.css'
+import { Link } from 'react-router-dom'
 
 const Header = ({onDataChanged}) => {
     const locations = [
@@ -72,12 +73,12 @@ const Header = ({onDataChanged}) => {
                 <div className="user-cadastro">
                     <h2>Ainda não tem cadastro?</h2>
                     <p>Compre ingressos para ir ao cinema com segurança e comodidade!</p>
-                    <a href="#" className='btnCriarConta'>Criar uma conta</a>
+                    <Link className='btnCriarConta' to={'/cadastrar'}>Criar uma conta</Link>
                 </div>
                 <hr />
                 <div className="user-login">
                     <h2>Conta INGRESSOSJÁ</h2>
-                    <a className='btnLogin' href="#">Entrar na minha conta</a>
+                    <Link className='btnLogin' to={'/login'}>Entrar na minha conta</Link>
                 </div>
             </div>
             )}

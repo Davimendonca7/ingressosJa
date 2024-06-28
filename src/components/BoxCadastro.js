@@ -1,0 +1,53 @@
+import React, { useState } from 'react'
+import imgLogin from '../assets/Popcorns.gif'
+import './BoxCadastro.css'
+const BoxCadastro = () => {
+  const [nome, setNome] = useState("")
+  const [email, setEmail] = useState("")
+  const [senha, setSenha] = useState("")
+  const [telefone, setTelefone] = useState("")
+  const [cpf, setCpf] = useState("")
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    setNome("")
+    setEmail("")
+    setSenha("")
+    setTelefone("")
+    setCpf("")
+  }
+  return (
+    <div className='box-cadastro'>
+      <img className='imgPopcorn' src={imgLogin} alt="" />
+      <div className="form-box">
+          <form onSubmit={handleSubmit}>
+            <div>
+                <label htmlFor="name">Nome</label>
+                <input type="text" name="name" placeholder="Digite seu nome" value={nome} onChange={(e)=> setNome(e.target.value)} />
+            </div>
+            <div>
+                <label htmlFor="email">E-mail</label>
+                <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e)=> setEmail(e.target.value)} />
+            </div>
+            <div className="box-flex">
+            <div>
+                <label htmlFor="senha">Senha</label>
+                <input type="password" name="senha" placeholder="Digite sua senha" value={senha} onChange={(e)=> setSenha(e.target.value)} />
+            </div>
+            <div>
+                <label htmlFor="telefone">Telefone</label>
+                <input type="text" name="telefone" placeholder="Digite seu telefone" value={telefone} onChange={(e)=> setTelefone(e.target.value)} />
+            </div>
+            </div>
+            <div>
+                <label htmlFor="cpf">Cpf</label>
+                <input type="text" name="cpf" placeholder="Digite seu cpf" value={cpf} onChange={(e)=> setCpf(e.target.value)} />
+            </div>
+            <input type="submit" value={'Enviar'} className='btnSubmit'/>
+          </form>
+      </div>
+    </div>
+
+)}
+
+export default BoxCadastro
