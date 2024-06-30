@@ -16,7 +16,7 @@ foreign key (fkCinema) references cinema(idCinema));
 
 CREATE TABLE tipo(
 idTipo INT PRIMARY KEY AUTO_INCREMENT,
-tipo varchar(100)
+descricao varchar(100)
 );
 
 CREATE TABLE assento(
@@ -68,7 +68,8 @@ fkPreco int,
 dataHora datetime,
 foreign key (fkSessao) references sessao(idSessao),
 foreign key (fkPreco) references preco(idPreco),
-foreign key (fkCliente) references cliente(idCliente)
+foreign key (fkCliente) references cliente(idCliente),
+foreign key (fkAssento) references assento(idAssento)
 );
 
 
@@ -91,7 +92,7 @@ INSERT INTO sala (nome, capacidade, fkCinema) VALUES
 ('Sala 2', 130, 4);
 
 -- Inserindo dados na tabela tipo
-INSERT INTO tipo (tipo) VALUES
+INSERT INTO tipo (descricao) VALUES
 ('VIP'),
 ('Normal');
 
