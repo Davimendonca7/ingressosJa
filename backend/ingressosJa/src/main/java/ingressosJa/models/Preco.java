@@ -4,18 +4,18 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "preco") // Nome da tabela no banco de dados
+@Table(name = "preco")
 public class Preco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "dia") // Nome da coluna no banco de dados
+    @Column(name = "dia")
     private String dia;
 
-    @Column(name = "preco") // Nome da coluna no banco de dados
+    @Column(name = "preco")
     private Double preco;
 
     public int getId() {

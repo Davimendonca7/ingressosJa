@@ -9,27 +9,27 @@ import javax.persistence.Id;
 import java.util.List;
 
 @Entity
-@Table(name = "filme") // Nome da tabela no banco de dados
+@Table(name = "filme")
 public class Filme {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idFilme") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idFilme")
     private Integer idFilme;
 
-    @Column(name = "titulo") // Nome da coluna no banco de dados
+    @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "capa") // Nome da coluna no banco de dados
+    @Column(name = "capa")
     private String capa;
 
-    @Column(name = "genero") // Nome da coluna no banco de dados
+    @Column(name = "genero")
     private String genero;
 
-    @Column(name = "duracaoMin") // Nome da coluna no banco de dados
+    @Column(name = "duracaoMin")
     private Integer duracaoMin;
 
-    @Column(name = "classificacao") // Nome da coluna no banco de dados
+    @Column(name = "classificacao")
     private String classificacao;
 
     @OneToMany(mappedBy = "filme", fetch = FetchType.LAZY)

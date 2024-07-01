@@ -6,27 +6,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "cliente") // Nome da tabela no banco de dados
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCliente") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idCliente")
     private Integer idCliente;
 
-    @Column(name = "nome") // Nome da coluna no banco de dados
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email") // Nome da coluna no banco de dados
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "senha") // Nome da coluna no banco de dados
+    @Column(name = "senha")
     private String senha;
 
-    @Column(name = "telefone") // Nome da coluna no banco de dados
+    @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "cpf") // Nome da coluna no banco de dados
+    @Column(name = "cpf")
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)

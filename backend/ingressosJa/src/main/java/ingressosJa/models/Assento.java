@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "assento") // Nome da tabela no banco de dados
+@Table(name = "assento")
 public class Assento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idAssento") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idAssento")
     private Integer idAssento;
 
-    @Column(name = "numero") // Nome da coluna no banco de dados
+    @Column(name = "numero")
     private String numero;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkSala") // Nome da coluna no banco de dados
+    @JoinColumn(name = "fkSala")
     @JsonIgnore
     private Sala sala;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkTipo") // Nome da coluna no banco de dados
+    @JoinColumn(name = "fkTipo")
     @JsonIgnore
     private Tipo tipo;
 

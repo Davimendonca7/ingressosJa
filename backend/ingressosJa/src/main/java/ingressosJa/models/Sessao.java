@@ -25,7 +25,7 @@ public class Sessao {
     private Sala sala;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkFilme") // Nome da coluna no banco de dados
+    @JoinColumn(name = "fkFilme")
     @JsonIgnore
     private Filme filme;
 

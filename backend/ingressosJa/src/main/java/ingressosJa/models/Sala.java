@@ -6,22 +6,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "sala") // Nome da tabela no banco de dados
+@Table(name = "sala")
 public class Sala {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idSala") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idSala")
     private Integer idSala;
 
-    @Column(name = "nome") // Nome da coluna no banco de dados
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "capacidade") // Nome da coluna no banco de dados
+    @Column(name = "capacidade")
     private Integer capacidade;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkCinema") // Nome da coluna no banco de dados
+    @JoinColumn(name = "fkCinema")
     @JsonIgnore
     private Cinema cinema;
 

@@ -7,18 +7,18 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "cinema") // Nome da tabela no banco de dados
+@Table(name = "cinema")
 public class Cinema {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCinema") // Nome da coluna no banco de dados
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idCinema")
     private Integer idCinema;
 
-    @Column(name = "endereco") // Nome da coluna no banco de dados
+    @Column(name = "endereco")
     private String endereco;
 
-    @Column(name = "nome") // Nome da coluna no banco de dados
+    @Column(name = "nome")
     private String nome;
 
     @OneToMany(mappedBy = "cinema", fetch = FetchType.LAZY)
