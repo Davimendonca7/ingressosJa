@@ -1,9 +1,14 @@
 .imgPopcornLogin {
-    width: 300px;
+    width: 350px;
   
+}
+.logoDiv {
+
+    text-align: center;
 }
 .logoVetor {
     width: 200px;
+    height: 90px;
 }
 .box-login {
     font-family: "Ubuntu", sans-serif;

@@ -78,7 +78,7 @@ const BoxCadastro = () => {
               {(inputProps) => <input {...inputProps} type="text" name="cpf" placeholder="Digite seu cpf" />}
             </InputMask>
           </div>
-          <input type="submit" value={'Enviar'} className='btnSubmit' />
+          <input type="submit" value={'Cadastrar'} className='btnSubmit' />
         </form>
       </div>
     </div>
