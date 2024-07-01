@@ -65,7 +65,7 @@ fkCliente int,
 fkSessao int,
 fkAssento int,
 fkPreco int,
-dataHora datetime,
+dataHora varchar(50),
 foreign key (fkSessao) references sessao(idSessao),
 foreign key (fkPreco) references preco(idPreco),
 foreign key (fkCliente) references cliente(idCliente),
@@ -187,7 +187,10 @@ INSERT INTO cliente (nome, email, senha, telefone, cpf) VALUES
 ('João da Silva', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901'),
 ('Maria Oliveira', 'maria.oliveira@example.com', 'senha456', '21987654321', '10987654321');
 
+select * from cliente;
+select * from ingresso;
 -- Inserindo dados na tabela ingresso
+
 INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES
 (1, 1, 1, 1, '2024-06-28 12:00:00'),
 (2, 2, 2, 2, '2024-06-28 15:00:00');

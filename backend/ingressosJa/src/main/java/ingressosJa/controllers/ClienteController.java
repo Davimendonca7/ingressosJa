@@ -1,12 +1,11 @@
 package ingressosJa.controllers;
 
 import ingressosJa.Services.ClienteService;
+import ingressosJa.models.AutenticacaoResposta;
+import ingressosJa.models.Cliente;
 import ingressosJa.models.Ingresso;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +14,15 @@ import java.util.List;
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
+
+    @PostMapping("/cadastrar")
+    public Cliente cadastrarCliente(@RequestBody Cliente cliente){
+        return clienteService.cadastrarCliente(cliente);
+    }
+    @PostMapping("/autenticar")
+    public AutenticacaoResposta autenticarCliente(@RequestBody Cliente cliente){
+        return clienteService.autenticarCliente(cliente);
+    }
 
     @GetMapping("/{clienteId}/ingressos")
     public List<Ingresso> buscarIngressos(@PathVariable Integer clienteId){
