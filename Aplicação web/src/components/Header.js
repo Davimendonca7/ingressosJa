@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from '../assets/logo.png'
+import logo from '../assets/logoVetor.svg'
 import './Header.css'
 import { Link } from 'react-router-dom'
 
@@ -24,7 +24,7 @@ const Header = ({onDataChanged}) => {
     <div className='headerContainer'>
       <div className="container">
         <div className="col-1">
-            <img src={logo} alt="" />
+            <img src={logo} height={'100px'} width={'120px'}/>
             <div className="location">
                 <i class='bx bxs-map'></i>
                 <button className='btnLocation' onClick={()=>{

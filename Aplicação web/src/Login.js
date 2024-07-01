@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import HeaderLoginCadastro from './components/HeaderLoginCadastro'
+import BoxLogin from './components/BoxLogin'
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "IngressosJá - Login";
+  }, []);
   return (
     <div>
-        <h1>Login</h1>
+        <HeaderLoginCadastro data={'Login'}/>
+        <BoxLogin/>
     </div>
   )
 }

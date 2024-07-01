@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
+
 import './Filmes.css';
 
 const Filmes = ({ cidade }) => {
+  useEffect(() => {
+    document.title = "IngressosJá";
+  }, []);
     const data = [
       { "id": 1,  "cidade": "São Paulo", "nome": "O Poderoso Chefão", "urlImagem": "https://a-static.mlcdn.com.br/450x450/poster-cartaz-o-poderoso-chefao-a-pop-arte-poster/poparteskins2/15938506091/c37244ecb827fb37e48bbbaad5c7a437.jpeg" },
       { "id": 2,  "cidade": "Rio de Janeiro", "nome": "Vingadores: Ultimato", "urlImagem": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" },

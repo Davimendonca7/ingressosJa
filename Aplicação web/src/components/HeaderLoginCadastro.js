@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './HeaderLoginCadastro.css'
-const HeaderLoginCadastro = () => {
+const HeaderLoginCadastro = ({data}) => {
   return (
     <div className='headerLoginCadastro'>
         <div className="container-col1">
             <div className="col-2-link">
                 <Link className='btnVoltar' to={'/'}><i class='bx bx-undo'></i></Link>
             </div>
-            <h3>Cadastro</h3>
+            <h3>{data}</h3>
         </div>
         
     </div>
