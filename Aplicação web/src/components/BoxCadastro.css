@@ -1,3 +1,7 @@
+*{
+    font-family: "Ubuntu", sans-serif;
+
+}
 .imgPopcorn {
     width: 400px;
 }
@@ -30,7 +34,7 @@
 }
 .box-flex {
     display: flex;
-    gap: 60px;
+    gap: 35px;
     width: 100%;
     
 }
@@ -44,7 +48,7 @@
     font-size: 18px;
 }
 .iptSenha, .iptTelefone {
-    width: 105% !important;
+    width: 95% !important;
 }
 .btnSubmit {
     margin-top: 20px;
@@ -62,4 +66,8 @@
 .btnSubmit:hover {
     background-color: #ffc5279b;
 
+}
+.alert-input {
+    width: 200px;
+    color: #ff2727;
 }

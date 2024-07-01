@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import InputMask from 'react-input-mask';
 import imgLogin from '../assets/Popcorns.gif';
 import './BoxCadastro.css';
 
 const BoxCadastro = () => {
-  const [nome, setNome] = useState("");
+  const [nomeCompleto, setNomeCompleto] = useState("");
+  const [nomeDeUsuario, setNomeDeUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
   const [cpf, setCpf] = useState("");
 
-
+  const [nomeCompletoVisible, setNomeCompletoVisible] = useState(false);
+  const [nomeDeUsuarioVisible, setNomeDeUsuarioVisible] = useState(false);
+  const [emailVisible, setEmailVisible] = useState(false);
+  const [senhaVisible, setSenhaVisible] = useState(false);
+  const [telefoneVisible, setTelefoneVisible] = useState(false);
+  const [cpfVisile, setCpfVisible] = useState(false);
   
+  const [mensagemErroEmail, setMensagemErroEmail] = useState("E-mail inválido")
+  const [mensagemErroUsername, setMensagemErroUsername] = useState("Nome de usuário inválido")
 
   const handleTelefoneChange = (e) => {
     const maskedValue = e.target.value;
     const cleanedValue = maskedValue.replace(/[^\d]/g, '');
     setTelefone(cleanedValue)
   };
-
+  const navigate = useNavigate();
   const handleCpfChange = (e) => {
     const maskedValue = e.target.value;
     const cleanedValue = maskedValue.replace(/[^\d]/g, ''); 
@@ -28,31 +39,100 @@ const BoxCadastro = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
- 
-    const data = {
-      nome: nome,
-      email: email,
-      senha: senha,
-      telefone: telefone,
-      cpf: cpf
-  };
+  
+    let isValid = true;
 
-  axios.post('http://localhost:8080/cliente/cadastrar', data)
-      .then(response => {
+    if (nomeCompleto.length < 3) {
+      setNomeCompletoVisible(true);
+      isValid = false;
+    } else {
+      setNomeCompletoVisible(false);
+    }
+
+    if (nomeDeUsuario.length < 3) {
+      setNomeDeUsuarioVisible(true);
+      isValid = false;
+    } else {
+      setNomeDeUsuarioVisible(false);
+    }
+
+    if (!email.includes('@')) {
+      setEmailVisible(true);
+      isValid = false;
+    } else {
+      setEmailVisible(false);
+    }
+
+    if (senha.length < 6) {
+      setSenhaVisible(true);
+      isValid = false;
+    } else {
+      setSenhaVisible(false);
+    }
+
+    if (telefone.length !== 11) {
+      setTelefoneVisible(true);
+      isValid = false;
+    } else {
+      setTelefoneVisible(false);
+    }
+
+    if (cpf.length !== 11) {
+      setCpfVisible(true);
+      isValid = false;
+    } else {
+      setCpfVisible(false);
+    }
+
+    if (isValid) {
+      const data = {
+        nome: nomeCompleto,
+        username: nomeDeUsuario,
+        email: email,
+        senha: senha,
+        telefone: telefone,
+        cpf: cpf
+      };
+      const MySwal = withReactContent(Swal)
+      axios.post('http://localhost:8080/cliente/cadastrar', data)
+        .then(response => {
           console.log('Resposta do servidor:', response.data);
-      
-      })
-      .catch(error => {
-          console.error('Erro ao enviar requisição:', error);
-       
-      });
- 
-    setNome("");
-    setEmail("");
-    setSenha("");
-    setTelefone("");
-    setCpf("");
-  };
+
+          if(response.data.mensagem === 'Username já existe'){
+            setMensagemErroUsername("Nome de usuário já existe");
+            setNomeDeUsuarioVisible(true);
+          } else if(response.data.mensagem === 'já existe uma conta vinculada a esse email'){
+            setMensagemErroEmail('Já existe uma conta vinculada a esse email');
+            setEmailVisible(true);
+          } else if(response.data.mensagem === 'Usuário cadastrado'){
+            MySwal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Cadastro reliazado com sucesso",
+              showConfirmButton: false,
+              timer: 1500,
+              background: '#2F2D2A',
+              color: '#fff' 
+            });
+            setNomeCompleto("");
+            setNomeDeUsuario("");
+            setEmail("");
+            setSenha("");
+            setTelefone("");
+            setCpf("");
+            navigate('/login');
+          }
+        
+  })
+  .catch(error => {
+      console.error('Erro ao enviar requisição:', error);
+   
+  });
+  } else {
+    console.log('Preencha todos os campos');
+  }
+  
+};
 
   return (
     <div className='box-cadastro'>
@@ -60,17 +140,27 @@ const BoxCadastro = () => {
       <div className="form-box">
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Nome</label>
-            <input type="text" name="name" placeholder="Digite seu nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+            <label htmlFor="name">Nome completo</label>
+            <input type="text" name="name" placeholder="Digite seu nome completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
+            {nomeCompletoVisible && (<p className='alert-input'>Nome completo inválido</p>)}
+          </div>
+          <div>
+            <label htmlFor="name">Nome de usuário</label>
+            <input type="text" name="name" placeholder="Digite seu nome de usuário" value={nomeDeUsuario} onChange={(e) => setNomeDeUsuario(e.target.value)} />
+            {nomeDeUsuarioVisible && (<p className='alert-input'>{mensagemErroUsername}</p>)}
+
           </div>
           <div>
             <label htmlFor="email">E-mail</label>
             <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            {emailVisible && (<p style={{width: '100%'}} className='alert-input'>{mensagemErroEmail}</p>)}
           </div>
           <div className="box-flex">
             <div>
               <label htmlFor="senha">Senha</label>
               <input type="password" className='iptSenha' name="senha" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            {senhaVisible && (<p className='alert-input'>Senha deve ter pelo menos 6 caracteres</p>)}
+
             </div>
             <div>
               <label htmlFor="telefone">Telefone</label>
@@ -82,6 +172,7 @@ const BoxCadastro = () => {
               >
                 {(inputProps) => <input {...inputProps} type="text" className='iptTelefone' name="telefone" placeholder="Digite seu telefone" />}
               </InputMask>
+            {telefoneVisible && (<p className='alert-input'>Telefone inválido</p>)}
              
             </div>
           </div>
@@ -95,6 +186,8 @@ const BoxCadastro = () => {
             >
               {(inputProps) => <input {...inputProps} type="text" name="cpf" placeholder="Digite seu cpf" />}
             </InputMask>
+            {cpfVisile && (<p className='alert-input'>Nome de usuário inválido</p>)}
+
           </div>
           <input type="submit" value={'Cadastrar'} className='btnSubmit' />
         </form>
