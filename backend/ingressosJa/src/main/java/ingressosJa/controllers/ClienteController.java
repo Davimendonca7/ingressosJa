@@ -16,7 +16,7 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping("/cadastrar")
-    public Cliente cadastrarCliente(@RequestBody Cliente cliente){
+    public AutenticacaoResposta cadastrarCliente(@RequestBody Cliente cliente){
         return clienteService.cadastrarCliente(cliente);
     }
     @PostMapping("/autenticar")

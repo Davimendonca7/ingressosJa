@@ -1,5 +1,7 @@
+-- 
+drop database ingressosJa;
+
 CREATE DATABASE ingressosJa;
--- drop database ingressosJa;
 USE ingressosja;
 
 CREATE TABLE cinema(
@@ -40,6 +42,7 @@ classificacao varchar(10));
 CREATE TABLE cliente(
 	idCliente INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
+	username VARCHAR(50),
 	email VARCHAR(50),
 	senha VARCHAR(50),
     telefone char(11),
@@ -183,9 +186,9 @@ INSERT INTO preco (dia, preco) VALUES
 ('Domingo', 30.00);
 
 -- Inserindo dados na tabela cliente
-INSERT INTO cliente (nome, email, senha, telefone, cpf) VALUES
-('João da Silva', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901'),
-('Maria Oliveira', 'maria.oliveira@example.com', 'senha456', '21987654321', '10987654321');
+INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
+('João da Silva', 'joao123', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901'),
+('Maria Oliveira','maria12' ,'maria.oliveira@example.com', 'senha456', '21987654321', '10987654321');
 
 select * from cliente;
 select * from ingresso;

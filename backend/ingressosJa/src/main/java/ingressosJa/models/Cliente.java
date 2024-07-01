@@ -16,22 +16,44 @@ public class Cliente {
 
     @Column(name = "nome")
     private String nome;
-
+    @Column(name = "username")
+    private String username;
     @Column(name = "email")
     private String email;
-
     @Column(name = "senha")
     private String senha;
-
     @Column(name = "telefone")
     private String telefone;
-
     @Column(name = "cpf")
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Ingresso> ingressos;
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
 
     public Integer getId() {
         return idCliente;

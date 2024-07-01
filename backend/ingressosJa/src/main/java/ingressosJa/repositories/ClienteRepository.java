@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     Optional<Cliente> findByNome(String nome);
+    Optional<Cliente> findByUsername(String nome);
+    Optional<Cliente> findByEmail(String email);
     @Query("SELECT i FROM Ingresso i WHERE i.cliente = :id")
     List<Ingresso> buscarIngressos(@Param("id") Integer id);
 }

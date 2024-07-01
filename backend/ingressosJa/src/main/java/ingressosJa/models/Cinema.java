@@ -20,10 +20,13 @@ public class Cinema {
 
     @Column(name = "nome")
     private String nome;
+    @Column(name = "username")
+    private String username;
 
     @OneToMany(mappedBy = "cinema", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Sala> salas;
+
 
     public List<Sala> getSalas() {
         return salas;

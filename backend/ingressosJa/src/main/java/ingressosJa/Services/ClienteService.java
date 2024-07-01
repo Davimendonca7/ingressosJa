@@ -15,12 +15,22 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public Cliente cadastrarCliente(Cliente cliente){
-        return clienteRepository.save(cliente);
+    public AutenticacaoResposta cadastrarCliente(Cliente cliente){
+        Optional<Cliente> clienteOptional = clienteRepository.findByUsername(cliente.getUsername());
 
+        if(clienteOptional.isPresent()){
+            return new AutenticacaoResposta(null, "Username já existe");
+        }else{
+            Optional<Cliente> clienteOptional1 = clienteRepository.findByEmail(cliente.getEmail());
+
+            if(clienteOptional1.isPresent()){
+                return new AutenticacaoResposta(null, "já existe uma conta vinculada a esse email");
+            }
+            return new AutenticacaoResposta(clienteRepository.save(cliente), "Usuário cadastrado");
+        }
     }
     public AutenticacaoResposta autenticarCliente(Cliente cliente){
-        Optional<Cliente> clienteOptional = clienteRepository.findByNome(cliente.getNome());
+        Optional<Cliente> clienteOptional = clienteRepository.findByUsername(cliente.getUsername());
 
         if(clienteOptional.isPresent()){
             Cliente clienteEncontrado = clienteOptional.get();
