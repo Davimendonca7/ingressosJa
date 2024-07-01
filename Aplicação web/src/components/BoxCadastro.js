@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import InputMask from 'react-input-mask';
 import imgLogin from '../assets/Popcorns.gif';
 import './BoxCadastro.css';
@@ -27,8 +28,25 @@ const BoxCadastro = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    console.log('teste', nome, email, senha, telefone, cpf);
+ 
+    const data = {
+      nome: nome,
+      email: email,
+      senha: senha,
+      telefone: telefone,
+      cpf: cpf
+  };
+
+  axios.post('http://localhost:8080/cliente/cadastrar', data)
+      .then(response => {
+          console.log('Resposta do servidor:', response.data);
+      
+      })
+      .catch(error => {
+          console.error('Erro ao enviar requisição:', error);
+       
+      });
+ 
     setNome("");
     setEmail("");
     setSenha("");

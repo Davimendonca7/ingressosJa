@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 import '../components/BoxLogin.css'
 import imgLogin from '../assets/Popcorns.gif';
 import vetorLogo from '../assets/logo.svg'
@@ -13,6 +14,22 @@ const BoxLogin = () => {
     e.preventDefault();
    
     console.log('teste', email, senha, nomeDeUsuario);
+
+    const data = {
+      nome: nomeDeUsuario,
+      email: email,
+      senha: senha,
+  };
+
+  axios.post('http://localhost:8080/cliente/autenticar', data)
+      .then(response => {
+          console.log('Resposta do servidor:', response.data);
+          
+      })
+      .catch(error => {
+          console.error('Erro ao enviar requisição:', error);
+       
+      });
 
     setEmail("");
     setSenha("");
