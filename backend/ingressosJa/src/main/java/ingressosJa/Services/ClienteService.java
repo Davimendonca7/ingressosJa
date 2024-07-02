@@ -37,7 +37,7 @@ public class ClienteService {
 
                 if(clienteEncontrado.getEmail().equals(cliente.getEmail())){
                     if(clienteEncontrado.getSenha().equals(cliente.getSenha())){
-                        return new AutenticacaoResposta(cliente, "Autentificado com sucesso");
+                        return new AutenticacaoResposta(cliente, "Autenticado com sucesso");
                     }else{
                         return new AutenticacaoResposta(null, "Senha incorreta");
                     }

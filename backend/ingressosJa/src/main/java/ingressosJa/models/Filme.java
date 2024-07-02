@@ -19,6 +19,8 @@ public class Filme {
 
     @Column(name = "titulo")
     private String titulo;
+    @Column(name = "descricao")
+    private String descricao;
 
     @Column(name = "capa")
     private String capa;
@@ -31,10 +33,28 @@ public class Filme {
 
     @Column(name = "classificacao")
     private String classificacao;
+    @Column(name = "exibicao")
+    private String exibicao;
 
     @OneToMany(mappedBy = "filme", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Sessao> sessoes;
+
+    public String getExibicao() {
+        return exibicao;
+    }
+
+    public void setExibicao(String exibicao) {
+        this.exibicao = exibicao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public List<Sessao> getSessoes() {
         return sessoes;

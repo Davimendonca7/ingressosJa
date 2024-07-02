@@ -14,9 +14,9 @@ public class AssentoController {
     @Autowired
     private AssentoService assentoService;
 
-    @GetMapping("/sala/{idSala}/sessao/{idSessao}")
-    public List<Assento> getAssentosBySalaIdAndSessaoId(@PathVariable Integer idSala, @PathVariable Integer idSessao) {
-        return assentoService.listarAssentos(idSala, idSessao);
+    @GetMapping("/sessao/{idSessao}")
+    public List<Assento> getAssentosBySalaIdAndSessaoId(@PathVariable Integer idSessao) {
+        return assentoService.listarAssentos(idSessao);
     }
 
 

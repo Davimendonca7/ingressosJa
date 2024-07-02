@@ -12,7 +12,10 @@ public class FilmeService {
     @Autowired
     private FilmeRepository filmeRepository;
 
-    public List<Filme> findAllByCinemaId(Integer id){
-      return filmeRepository.findAllByCinemaId(id);
+    public List<Filme> findAllCartazByCinemaId(Integer id){
+      return filmeRepository.findAllCartazByCinemaId(id);
+    }
+    public List<Filme> findAllBreveByCinemaId(Integer id){
+      return filmeRepository.findAllBreveByCinemaId(id);
     }
 }

@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface AssentoRepository extends JpaRepository<Assento, Integer> {
 
-    @Query("SELECT a FROM Assento a WHERE a.sala.idSala = :idSala AND a.sala.idSala IN (SELECT s.sala.idSala FROM Sessao s WHERE s.idSessao = :idSessao)")
-    List<Assento> findAssentosBySalaIdAndSessaoId(@Param("idSala") Integer idSala, @Param("idSessao") Integer idSessao);}
+    @Query("SELECT a FROM Assento a JOIN a.sala s JOIN s.sessoes se WHERE se.idSessao = :idSessao")
+    List<Assento> findAssentosBySessaoId(@Param("idSessao") Integer idSessao);
+}
