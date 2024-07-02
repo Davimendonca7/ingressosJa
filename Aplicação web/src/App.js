@@ -11,6 +11,7 @@ function App() {
   const [dataCidade, setDataCidade] = useState('')
   const [dataFilmeSelecionado, setDataFilmeSelecionado] = useState([])
   const hanleDataChange = (data) =>{
+    console.log('pai', data);
     setDataCidade(data)
   }
   const hanleFilme = (nome, url) =>{
@@ -24,9 +25,9 @@ function App() {
             <div className="App">
                 <Header onDataChanged={hanleDataChange}/>
                 <h2 className="title-container-filme">
-                    Filmes - {dataCidade === '' ? 'Escolha uma cidade para ver os filmes disponíveis' : dataCidade}
+                    Filmes - {dataCidade[0]}
                   </h2>
-                {dataCidade !== '' && <Filmes cidade={dataCidade} onFilmeSelecionado={hanleFilme}/>}
+                {dataCidade !== '' && <Filmes cidade={dataCidade[1]} onFilmeSelecionado={hanleFilme}/>}
               </div>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/cadastrar' element={<Cadastrar/>}/>

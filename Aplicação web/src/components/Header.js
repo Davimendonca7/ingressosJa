@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../assets/logo.svg'
 import './Header.css'
+import axios from 'axios';
+
 import { Link } from 'react-router-dom'
 
 const Header = ({onDataChanged}) => {
-    const locations = [
-        { "id": 1, "nome": "São Paulo", "estado": "São Paulo" },
-        { "id": 2, "nome": "Rio de Janeiro", "estado": "Rio de Janeiro" },
-        { "id": 3, "nome": "Belo Horizonte", "estado": "Minas Gerais" },
-        { "id": 4, "nome": "Porto Alegre", "estado": "Rio Grande do Sul" },
-        { "id": 5, "nome": "Curitiba", "estado": "Paraná" },
-        { "id": 6, "nome": "Recife", "estado": "Pernambuco" },
-        { "id": 7, "nome": "Fortaleza", "estado": "Ceará" },
-        { "id": 8, "nome": "Salvador", "estado": "Bahia" },
-        { "id": 9, "nome": "Brasília", "estado": "Distrito Federal" },
-        { "id": 10, "nome": "Manaus", "estado": "Amazonas" }
-    ]
-    const [cidade, setCidade] = useState(locations[0].nome)
+    const [locations, setLocations] = useState('')
+    const [cidade, setCidade] = useState([])
     const [openModalUser, setOpenModalUser] = useState(false)
     const [openList, setOpenlist] = useState(false) 
-    onDataChanged(cidade)
+    useEffect(() => {
+        axios.get('http://localhost:8080/cinema/listar')
+            .then(response => {
+                console.log('oq tem aqui', response.data);
+                setLocations(response.data);
+                if (response.data.length > 0) {
+                    const firstCity = response.data[0].nome;
+                    const firstCityId = response.data[0].idCinema;
+                    setCidade([firstCity, firstCityId]);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar requisição:', error);
+            });
+        }, []); 
+        console.log('cidade kkkkkk', cidade);
+        onDataChanged(cidade);
+    // console.log('h', locations);
+    // console.log('cidade', cidade);
   return (
     <div className='headerContainer'>
       <div className="container">
@@ -33,21 +42,24 @@ const Header = ({onDataChanged}) => {
                     }else {
                         setOpenlist(true)
                     }
-                }}>{cidade}<i class='bx bxs-chevron-down'></i></button>
+                }}>{cidade[0]}<i class='bx bxs-chevron-down'></i></button>
                 <div className="col-1-list-open">
-                {openList === true && (locations.map((location)=>(
+                {openList === true && (locations.map((location)=>{
+                    var a = location.endereco.split(',')
+                    return (
                         <button className='btnOption'
-                        key={location.id}
-                        
+                        key={location.idCinema}
                         onClick={(e)=>{
+                            const [nome, id] = JSON.parse(e.target.value)
                             setOpenlist(false)
-                            setCidade(e.target.value)
-                            onDataChanged(e.target.value)
+                            setCidade([nome, id])
+                            onDataChanged([nome, id])
                         }} 
-                        value={location.nome}
-                        >{location.nome}, {location.estado}
+                        value={JSON.stringify([location.nome, location.idCinema])}
+                        >{location.nome}, {a[0]} - {a[2]}
                         </button>
-                    )))}
+                    )
+                }))}
                 </div>
             </div>
             
