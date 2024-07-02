@@ -34,10 +34,12 @@ foreign key (fkTipo) references tipo(idTipo));
 CREATE TABLE filme(
 idFilme INT PRIMARY KEY AUTO_INCREMENT,
 titulo varchar(100),
+descricao text,
 capa varchar(1000),
 genero varchar(50),
 duracaoMin int,
-classificacao varchar(10));
+classificacao varchar(10),
+exibicao varchar(10));
 
 CREATE TABLE cliente(
 	idCliente INT PRIMARY KEY AUTO_INCREMENT,
@@ -100,11 +102,11 @@ INSERT INTO tipo (descricao) VALUES
 ('Normal');
 
 -- Inserindo dados na tabela filme com URLs reais
-INSERT INTO filme (titulo, capa, genero, duracaoMin, classificacao) VALUES
-('O Poderoso Chefão', 'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg', 'Drama', 175, '18+'),
-('Vingadores: Ultimato', 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg', 'Ação', 181, '12+'),
-('Interestelar', 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg', 'Ficção Científica', 169, '10+'),
-('Parasita', 'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png', 'Thriller', 132, '16+');
+INSERT INTO filme (titulo, descricao, capa, genero, duracaoMin, classificacao, exibicao) VALUES
+('O Poderoso Chefão', 'A saga de uma família de mafiosos italo-americanos e suas lutas pelo poder.', 'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg', 'Drama', 175, '18+', 'Em cartaz'),
+('Vingadores: Ultimato', 'Os Vingadores precisam unir forças para derrotar Thanos e salvar o universo.', 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg', 'Ação', 181, '12+', 'Em cartaz'),
+('Interestelar', 'Um grupo de exploradores viaja através de um buraco de minhoca no espaço para salvar a humanidade.', 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg', 'Ficção Científica', 169, '10+', 'Em breve'),
+('Parasita', 'Uma família pobre se infiltra na vida de uma família rica com consequências inesperadas.', 'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png', 'Thriller', 132, '16+', 'Em breve');
 
 -- Inserindo dados na tabela assento
 -- Cinema 1, Sala 1
@@ -192,6 +194,9 @@ INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 
 select * from cliente;
 select * from ingresso;
+select * from filme;
+select * from filme;
+
 -- Inserindo dados na tabela ingresso
 
 INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES

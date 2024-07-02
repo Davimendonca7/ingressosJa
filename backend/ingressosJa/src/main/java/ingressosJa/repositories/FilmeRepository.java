@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme, Integer> {
-        @Query("SELECT DISTINCT f FROM Filme f JOIN f.sessoes s JOIN s.sala sala WHERE sala.cinema.idCinema = :cinemaId")
-        List<Filme> findAllByCinemaId(@Param("cinemaId") Integer cinemaId);
+        @Query("SELECT DISTINCT f FROM Filme f JOIN f.sessoes s JOIN s.sala sala WHERE sala.cinema.idCinema = :cinemaId AND f.exibicao = 'Em cartaz'")
+        List<Filme> findAllCartazByCinemaId(@Param("cinemaId") Integer cinemaId);
+        @Query("SELECT DISTINCT f FROM Filme f JOIN f.sessoes s JOIN s.sala sala WHERE sala.cinema.idCinema = :cinemaId AND f.exibicao = 'Em breve'")
+        List<Filme> findAllBreveByCinemaId(@Param("cinemaId") Integer cinemaId);
 }

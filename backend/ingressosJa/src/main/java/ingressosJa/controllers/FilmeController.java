@@ -13,8 +13,12 @@ public class FilmeController {
     @Autowired
     private FilmeService filmeService;
 
-    @GetMapping("/{cinemaId}/filmes")
-    public List<Filme> getFilmesByCinemaId(@PathVariable Integer cinemaId) {
-        return filmeService.findAllByCinemaId(cinemaId);
+    @GetMapping("/{cinemaId}/emCartaz")
+    public List<Filme> getFilmesCartazByCinemaId(@PathVariable Integer cinemaId) {
+        return filmeService.findAllCartazByCinemaId(cinemaId);
+    }
+    @GetMapping("/{cinemaId}/emBreve")
+    public List<Filme> getFilmesBreveByCinemaId(@PathVariable Integer cinemaId) {
+        return filmeService.findAllBreveByCinemaId(cinemaId);
     }
 }

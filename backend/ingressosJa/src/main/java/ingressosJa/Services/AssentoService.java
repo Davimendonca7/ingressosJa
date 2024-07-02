@@ -14,7 +14,7 @@ public class AssentoService {
     @Autowired
     private AssentoRepository assentoRepository;
 
-    public List<Assento> listarAssentos(Integer idSala, Integer idSessao) {
-        return assentoRepository.findAssentosBySalaIdAndSessaoId(idSala, idSessao);
+    public List<Assento> listarAssentos(Integer idSessao) {
+        return assentoRepository.findAssentosBySessaoId(idSessao);
     }
 }
