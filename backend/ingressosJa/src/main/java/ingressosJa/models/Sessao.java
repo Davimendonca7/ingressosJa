@@ -18,7 +18,8 @@ public class Sessao {
     private Integer idSessao;
     @Column(name = "dataHora")
     private String dataHora;
-
+    @Column(name = "tipoSessao")
+    private String tipoSessao;
     @ManyToOne
     @JoinColumn(name = "fkSala")
     @JsonIgnore
@@ -71,5 +72,13 @@ public class Sessao {
 
     public void setIngressos(List<Ingresso> ingressos) {
         this.ingressos = ingressos;
+    }
+
+    public String getTipoSessao() {
+        return tipoSessao;
+    }
+
+    public void setTipoSessao(String tipoSessao) {
+        this.tipoSessao = tipoSessao;
     }
 }

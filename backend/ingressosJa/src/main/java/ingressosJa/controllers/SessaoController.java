@@ -3,16 +3,14 @@ package ingressosJa.controllers;
 import ingressosJa.Services.SessaoService;
 import ingressosJa.models.Sessao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/sessao")
+@RequestMapping("/sessoes")
 public class SessaoController {
     @Autowired
     private SessaoService sessaoService;
@@ -20,5 +18,15 @@ public class SessaoController {
     @GetMapping("/{idCinema}/{idFilme}")
     public List<Sessao> findSessoes(@PathVariable Integer idCinema, @PathVariable Integer idFilme){
       return sessaoService.findSessaoByFilme(idCinema, idFilme);
+    }
+
+    @GetMapping("/datas")
+    public List<Object[]> getSessoesGroupedByDate() {
+        return sessaoService.getSessoesGroupedByDate();
+    }
+
+    @GetMapping("/filtro/{data}/{tipo}")
+    public List<Sessao> filtroSessao(@PathVariable String data, @PathVariable String tipo){
+        return  sessaoService.filtroSessao(data, tipo);
     }
 }

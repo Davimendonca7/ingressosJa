@@ -54,9 +54,16 @@ CREATE TABLE sessao(
 idSessao INT PRIMARY KEY AUTO_INCREMENT,
 fkSala int,
 fkFilme int,
-dataHora datetime,
+dataHora datetime,	
+tipoSessao varchar(50),	
 foreign key (fkSala) references sala(idSala),
 foreign key (fkFilme) references filme(idFilme));
+
+select dataHora from sessao;
+
+SELECT DATE(dataHora) AS data
+FROM sessao
+GROUP BY DATE(dataHora);
 
 CREATE TABLE preco(
 idPreco INT PRIMARY KEY AUTO_INCREMENT,
@@ -78,14 +85,12 @@ foreign key (fkAssento) references assento(idAssento)
 );
 
 
--- Inserindo dados na tabela cinema
 INSERT INTO cinema (idCinema, endereco, nome) VALUES
 (1, 'Avenida Paulista, 1000, São Paulo', 'Cinema Paulista'),
 (2, 'Rua das Flores, 200, Rio de Janeiro', 'Cinema RJ'),
 (3, 'Praça Sete, 300, Belo Horizonte', 'Cinema BH'),
 (4, 'Avenida Beira Mar, 400, Salvador', 'Cinema Salvador');
 
--- Inserindo dados na tabela sala
 INSERT INTO sala (nome, capacidade, fkCinema) VALUES
 ('Sala 1', 100, 1),
 ('Sala 2', 150, 1),
@@ -96,19 +101,16 @@ INSERT INTO sala (nome, capacidade, fkCinema) VALUES
 ('Sala 1', 90, 4),
 ('Sala 2', 130, 4);
 
--- Inserindo dados na tabela tipo
 INSERT INTO tipo (descricao) VALUES
 ('VIP'),
 ('Normal');
 
--- Inserindo dados na tabela filme com URLs reais
 INSERT INTO filme (titulo, descricao, capa, genero, duracaoMin, classificacao, exibicao) VALUES
 ('O Poderoso Chefão', 'A saga de uma família de mafiosos italo-americanos e suas lutas pelo poder.', 'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg', 'Drama', 175, '18+', 'Em cartaz'),
 ('Vingadores: Ultimato', 'Os Vingadores precisam unir forças para derrotar Thanos e salvar o universo.', 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg', 'Ação', 181, '12+', 'Em cartaz'),
 ('Interestelar', 'Um grupo de exploradores viaja através de um buraco de minhoca no espaço para salvar a humanidade.', 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg', 'Ficção Científica', 169, '10+', 'Em breve'),
 ('Parasita', 'Uma família pobre se infiltra na vida de uma família rica com consequências inesperadas.', 'https://upload.wikimedia.org/wikipedia/en/5/53/Parasite_%282019_film%29.png', 'Thriller', 132, '16+', 'Em breve');
 
--- Inserindo dados na tabela assento
 -- Cinema 1, Sala 1
 INSERT INTO assento (fkSala, numero, fkTipo) VALUES
 (1, 'A1', 1),
@@ -166,18 +168,16 @@ INSERT INTO assento (fkSala, numero, fkTipo) VALUES
 (8, 'B3', 2),
 (8, 'B4', 1);
 
--- Inserindo dados na tabela sessao
-INSERT INTO sessao (fkSala, fkFilme, dataHora) VALUES
-(1, 1, '2024-07-01 14:00:00'),
-(2, 2, '2024-07-01 17:00:00'),
-(3, 3, '2024-07-02 14:00:00'),
-(4, 4, '2024-07-02 17:00:00'),
-(5, 1, '2024-07-03 14:00:00'),
-(6, 2, '2024-07-03 17:00:00'),
-(7, 3, '2024-07-04 14:00:00'),
-(8, 4, '2024-07-04 17:00:00');
+INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
+(1, 1, '2024-07-01 14:00:00', '2D'),
+(2, 2, '2024-07-01 17:00:00', '3D'),
+(3, 3, '2024-07-02 14:00:00', '2D'),
+(4, 4, '2024-07-02 17:00:00', '3D'),
+(5, 1, '2024-07-03 14:00:00', '2D'),
+(6, 2, '2024-07-03 17:00:00', '3D'),
+(7, 3, '2024-07-04 14:00:00', '2D'),
+(8, 4, '2024-07-04 17:00:00', '3D');
 
--- Inserindo dados na tabela preco
 INSERT INTO preco (dia, preco) VALUES
 ('Segunda-feira', 20.00),
 ('Terça-feira', 20.00),
@@ -187,7 +187,6 @@ INSERT INTO preco (dia, preco) VALUES
 ('Sábado', 30.00),
 ('Domingo', 30.00);
 
--- Inserindo dados na tabela cliente
 INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 ('João da Silva', 'joao123', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901'),
 ('Maria Oliveira','maria12' ,'maria.oliveira@example.com', 'senha456', '21987654321', '10987654321');
@@ -195,7 +194,7 @@ INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 select * from cliente;
 select * from ingresso;
 select * from filme;
-select * from filme;
+select * from sessao;
 
 -- Inserindo dados na tabela ingresso
 
