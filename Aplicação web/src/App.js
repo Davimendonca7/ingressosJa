@@ -8,6 +8,7 @@ import Cadastrar from './Cadastrar';
 import SpecificFilm from './SpecificFilm';
 
 function App() {
+  
   const [dataCidade, setDataCidade] = useState('')
   const [dataFilmeSelecionado, setDataFilmeSelecionado] = useState([])
   const hanleDataChange = (data) =>{
@@ -32,6 +33,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/cadastrar' element={<Cadastrar/>}/>
           <Route path='/filme' element={<SpecificFilm filmeSelecionado={dataFilmeSelecionado} />}/>
+          <Route path='/conta' element={<h1>davi é corno</h1>}/>
       </Routes>
     </BrowserRouter>
     

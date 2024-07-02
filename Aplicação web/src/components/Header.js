@@ -65,20 +65,20 @@ const Header = ({onDataChanged}) => {
             
         </div>
         <div className="user">
-                
-                <button 
+            {console.log(sessionStorage.getItem('EMAIL_USUARIO'))}
+            {sessionStorage.getItem('EMAIL_USUARIO') === null ? (<button 
                 onClick={()=>{
                     if(openModalUser === true){
                         setOpenModalUser(false)
                     }else {
                         setOpenModalUser(true)
                     }
-                    console.log('aqui', openModalUser);
+                    // console.log('aqui', openModalUser);
                 }}
                 className='btnUser'>
                 <i class='bx bxs-user-circle'></i>
                 <span>Entrar ou cadastrar-se</span>
-                </button>
+                </button>) : (<Link to={"/conta"}><i style={{fontSize: '40px'}} class='bx bxs-user-circle' ></i></Link>)}
             </div>
             {openModalUser === true && (
                 <div className="modalUser">

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../components/BoxLogin.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import imgLogin from '../assets/Popcorns.gif';
 import vetorLogo from '../assets/logo.svg'
 
@@ -29,17 +31,28 @@ const BoxLogin = () => {
       email: email,
       senha: senha,
   };
-
+  const MySwal = withReactContent(Swal)
   axios.post('http://localhost:8080/cliente/autenticar', data)
       .then(response => {
           console.log('Resposta do servidor:', response.data);
           if(response.data.mensagem === 'Autentificado com sucesso'){
+            MySwal.fire({
+              position: "top-end",
+              icon: "success",
+              iconColor: '#FFC727',
+              title: "Login reliazado com sucesso",
+              showConfirmButton: false,
+              timer: 1500,
+              background: '#2F2D2A',
+              color: '#fff' 
+            });
             setEmail("");
             setSenha("");
             setNomeDeUsuario("");
             sessionStorage.NOME_USUARIO = nomeDeUsuario
             sessionStorage.EMAIL_USUARIO = email
-            navigate('/')
+            sessionStorage.LOGADO = true
+            setTimeout(()=>{navigate('/')}, 2000)
           }
           if(response.data.mensagem === 'Username incorreto'){
            setNomeDeUsuarioVisible(true)
