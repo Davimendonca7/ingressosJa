@@ -13,27 +13,41 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
   const [data, setData] = useState([])
   
   const handleButtonClick = (buttonType) => {
+    
     setActiveButton(buttonType);
   };
   
-  const handleFilmeClick = (nome, url) => {
+  const handleFilmeClick = (nome, url, description, duracao, genero, classificacao, id) => {
     
-    onFilmeSelecionado(nome, url);
+    onFilmeSelecionado(nome, url, description, duracao, genero, classificacao, id);
   };
   
   
   // console.log('id corre?', cidade);
   useEffect(() => {
-    axios.get(`http://localhost:8080/filmes/${cidade}/filmes`)
-        .then(response => {
-            console.log('filmes', response.data);
-            setData(response.data)
-            
-        })
-        .catch(error => {
-            console.error('Erro ao enviar requisição:', error);
-        });
-    }, [cidade]); 
+    console.log('estado:', activeButton);
+   if(activeButton === 'emCartaz'){
+    axios.get(`http://localhost:8080/filmes/${cidade}/emCartaz`)
+    .then(response => {
+        console.log('filmes', response.data);
+        setData(response.data)
+        
+    })
+    .catch(error => {
+        console.error('Erro ao enviar requisição:', error);
+    });
+   }else {
+    axios.get(`http://localhost:8080/filmes/${cidade}/emBreve`)
+    .then(response => {
+        // console.log('filmes', response.data);
+        setData(response.data)
+        
+    })
+    .catch(error => {
+        console.error('Erro ao enviar requisição:', error);
+    });
+   }
+    }, [cidade, activeButton]); 
 
   return (
     <div className="filme">
@@ -57,7 +71,10 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
               borderBottom: activeButton === 'emBreve' ?  '6px solid #FFC100' : 'none'
             }}
             className="btn-filmes emBreve"
-            onClick={() => handleButtonClick('emBreve')}
+            onClick={() => {
+              handleButtonClick('emBreve')
+             
+            }}
           >
             Em breve
           </button>
@@ -66,9 +83,9 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
           {data.map((d) => {
            
               return (
-                <div key={d.id} className="filme-item">
+                <div key={d.idFilme} className="filme-item">
                   <Link
-                    onClick={() => handleFilmeClick(d.titulo, d.capa)}
+                    onClick={() => handleFilmeClick(d.titulo, d.capa, d.descricao, d.duracaoMin, d.genero, d.classificacao, d.idFilme)}
                     to={'/filme'}
                     className='buttonFilme'
                   >

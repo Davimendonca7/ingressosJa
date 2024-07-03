@@ -25,7 +25,7 @@ const Header = ({onDataChanged}) => {
                 console.error('Erro ao enviar requisição:', error);
             });
         }, []); 
-        console.log('cidade kkkkkk', cidade);
+        // console.log('cidade kkkkkk', cidade);
         onDataChanged(cidade);
     // console.log('h', locations);
     // console.log('cidade', cidade);
@@ -33,16 +33,16 @@ const Header = ({onDataChanged}) => {
     <div className='headerContainer'>
       <div className="container">
         <div className="col-1">
-            <Link to={'/'}><img src={logo} height={'100px'} width={'180px'}/></Link>
+            <Link to={'/'}><img src={logo} height={'100px'} width={'180px'} alt='header'/></Link>
             <div className="location">
-                <i class='bx bxs-map'></i>
+                <i className='bx bxs-map'></i>
                 <button className='btnLocation' onClick={()=>{
                     if(openList === true){
                         setOpenlist(false)
                     }else {
                         setOpenlist(true)
                     }
-                }}>{cidade[0]}<i class='bx bxs-chevron-down'></i></button>
+                }}>{cidade[0]}<i className='bx bxs-chevron-down'></i></button>
                 <div className="col-1-list-open">
                 {openList === true && (locations.map((location)=>{
                     var a = location.endereco.split(',')
@@ -65,7 +65,7 @@ const Header = ({onDataChanged}) => {
             
         </div>
         <div className="user">
-            {console.log(sessionStorage.getItem('EMAIL_USUARIO'))}
+         
             {sessionStorage.getItem('EMAIL_USUARIO') === null ? (<button 
                 onClick={()=>{
                     if(openModalUser === true){
@@ -76,9 +76,9 @@ const Header = ({onDataChanged}) => {
                     // console.log('aqui', openModalUser);
                 }}
                 className='btnUser'>
-                <i class='bx bxs-user-circle'></i>
+                <i className='bx bxs-user-circle'></i>
                 <span>Entrar ou cadastrar-se</span>
-                </button>) : (<Link to={"/conta"}><i style={{fontSize: '40px'}} class='bx bxs-user-circle' ></i></Link>)}
+                </button>) : (<Link to={"/conta"}><i style={{fontSize: '40px'}} className='bx bxs-user-circle' ></i></Link>)}
             </div>
             {openModalUser === true && (
                 <div className="modalUser">
@@ -90,7 +90,7 @@ const Header = ({onDataChanged}) => {
                 <hr />
                 <div className="user-login">
                     <h2>Conta INGRESSOSJÁ</h2>
-                    <Link className='btnLogin' to={'/login'}>Entrar na minha conta<i class='bx bx-right-arrow-alt' ></i></Link>
+                    <Link className='btnLogin' to={'/login'}>Entrar na minha conta<i className='bx bx-right-arrow-alt' ></i></Link>
                 </div>
             </div>
             )}

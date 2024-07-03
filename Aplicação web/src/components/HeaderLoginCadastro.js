@@ -6,7 +6,7 @@ const HeaderLoginCadastro = ({data}) => {
     <div className='headerLoginCadastro'>
         <div className="container-col1">
             <div className="col-2-link">
-                <Link className='btnVoltar' to={'/'}><i class='bx bx-undo'></i></Link>
+                <Link className='btnVoltar' to={'/'}><i className='bx bx-undo'></i></Link>
             </div>
             <h3>{data}</h3>
         </div>

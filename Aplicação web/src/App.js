@@ -12,12 +12,12 @@ function App() {
   const [dataCidade, setDataCidade] = useState('')
   const [dataFilmeSelecionado, setDataFilmeSelecionado] = useState([])
   const hanleDataChange = (data) =>{
-    console.log('pai', data);
+    // console.log('pai', data);
     setDataCidade(data)
   }
-  const hanleFilme = (nome, url) =>{
+  const hanleFilme = (nome, url, description, duracao, genero, classificacao, idFilme) =>{
     setDataFilmeSelecionado([])
-    setDataFilmeSelecionado(prev => [...prev, nome, url])
+    setDataFilmeSelecionado(prev => [...prev, nome, url, description, duracao, genero, classificacao, idFilme, dataCidade[1]])
   }
   return (
     <BrowserRouter>

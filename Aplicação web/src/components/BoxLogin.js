@@ -34,8 +34,9 @@ const BoxLogin = () => {
   const MySwal = withReactContent(Swal)
   axios.post('http://localhost:8080/cliente/autenticar', data)
       .then(response => {
-          console.log('Resposta do servidor:', response.data);
-          if(response.data.mensagem === 'Autentificado com sucesso'){
+          console.log('Resposta do servidor:', response.data.mensagem);
+          if(response.data.mensagem === 'Autenticado com sucesso'){
+            console.log('aaaaaaaa');
             MySwal.fire({
               position: "top-end",
               icon: "success",
