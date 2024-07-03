@@ -1,6 +1,6 @@
 package ingressosJa.Services;
 
-import ingressosJa.models.AutenticacaoResposta;
+import ingressosJa.DTO.AutenticacaoResposta;
 import ingressosJa.models.Cliente;
 import ingressosJa.models.Ingresso;
 import ingressosJa.repositories.ClienteRepository;

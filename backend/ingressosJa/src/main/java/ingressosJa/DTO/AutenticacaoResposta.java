@@ -1,4 +1,6 @@
-package ingressosJa.models;
+package ingressosJa.DTO;
+
+import ingressosJa.models.Cliente;
 
 public class AutenticacaoResposta {
     private Cliente cliente;

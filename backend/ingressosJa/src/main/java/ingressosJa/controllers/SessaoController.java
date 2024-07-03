@@ -1,5 +1,6 @@
 package ingressosJa.controllers;
 
+import ingressosJa.DTO.FiltroSesssao;
 import ingressosJa.Services.SessaoService;
 import ingressosJa.models.Sessao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class SessaoController {
       return sessaoService.findSessaoByFilme(idCinema, idFilme);
     }
 
-    @GetMapping("/datas")
-    public List<Object[]> getSessoesGroupedByDate() {
-        return sessaoService.getSessoesGroupedByDate();
+    @GetMapping("/cinema/{idCinema}/filme/{idFilme}")
+    public List<Object[]> getSessoesGroupedByDate(@PathVariable Integer idCinema, @PathVariable Integer idFilme) {
+        return sessaoService.getSessoesGroupedByDate(idCinema, idFilme);
     }
 
-    @GetMapping("/filtro/{data}/{tipo}")
-    public List<Sessao> filtroSessao(@PathVariable String data, @PathVariable String tipo){
-        return  sessaoService.filtroSessao(data, tipo);
+    @GetMapping("/filtro")
+    public List<Sessao> filtroSessao(@RequestBody FiltroSesssao filtroSesssao){
+        return  sessaoService.filtroSessao(filtroSesssao);
     }
 }
