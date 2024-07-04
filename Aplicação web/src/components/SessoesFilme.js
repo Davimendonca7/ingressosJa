@@ -12,7 +12,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
     const [dataTipo, setDataTipo] = useState(tipo[0]);
     
     useEffect(() => {
-        axios.get(`http://localhost:8080/sessoes/datas`)
+        axios.get(`http://localhost:8080/sessoes/cinema/${idCinema}/filme/${idFilme}`)
         .then(response => {
             const fetchedHoras = response.data;
             setHoras(fetchedHoras);
@@ -24,6 +24,25 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
             console.error('Erro ao enviar requisição:', error);
         });
     }, []); 
+    
+    useEffect(() => {
+        // console.log(dataHora[0]);
+        const filtro = {
+            data : "2024-07-01",
+            tipoSessao : "Todos",
+            idCinema : 1,
+            idFilme : 2
+          }
+        console.log(filtro);
+        axios.get(`http://localhost:8080/sessoes/filtro`, filtro)
+        .then(response => {
+            console.log('response filtro', response.data);
+            
+        })
+        .catch(error => {
+            console.error('Erro ao enviar requisição:', error);
+        });
+    }, [dataHora, dataTipo]); 
 
     return (
         <div className='sessao'>
