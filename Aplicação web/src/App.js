@@ -34,6 +34,7 @@ function App() {
           <Route path='/cadastrar' element={<Cadastrar/>}/>
           <Route path='/filme' element={<SpecificFilm filmeSelecionado={dataFilmeSelecionado} />}/>
           <Route path='/conta' element={<h1>davi é corno</h1>}/>
+          <Route path='/comprarIngresso' element={<h1>davi é corno</h1>}/>
       </Routes>
     </BrowserRouter>
     

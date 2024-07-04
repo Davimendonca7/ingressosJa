@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './SessoesFilme.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const SessoesFilme = ({ idFilme, idCinema }) => {
     const [modalHoraOpen, setModalHoraOpen] = useState(false);
@@ -10,6 +12,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
     const tipo = ['Todos', '3D', '2D'];
     const [horas, setHoras] = useState([]);
     const [dataTipo, setDataTipo] = useState(tipo[0]);
+    const [sessoes, setSessoes] = useState([])
     
     useEffect(() => {
         axios.get(`http://localhost:8080/sessoes/cinema/${idCinema}/filme/${idFilme}`)
@@ -23,29 +26,35 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
         .catch(error => {
             console.error('Erro ao enviar requisição:', error);
         });
-    }, []); 
+    }, [dataHora, idCinema, idFilme]); 
     
     useEffect(() => {
-        // console.log(dataHora[0]);
+        console.log('t', dataTipo);
         const filtro = {
-            data : "2024-07-01",
-            tipoSessao : "Todos",
-            idCinema : 1,
-            idFilme : 2
+            data: dataHora[0],
+            tipoSessao: dataTipo,
+            idCinema: idCinema,
+            idFilme: idFilme
           }
         console.log(filtro);
         axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
         .then(response => {
             console.log('response filtro', response.data);
-            
+            setSessoes(response.data)
         })
         .catch(error => {
             console.error('Erro ao enviar requisição:', error);
         });
-    }, [dataHora, dataTipo]); 
+    }, [dataHora, dataTipo, idCinema, idFilme]); 
 
     return (
         <div className='sessao'>
+            <h1 style={{textAlign: 'center', fontSize: '28px'}}>Escolha ohorario e o tipo de sessão</h1>
+            <div style={{display: 'flex',
+                justifyContent: 'center',
+                gap: '20px',
+                height: '70px'
+            }}>
             <div className="escolherHora">
                 <button className='btnHoraSessao' onClick={() => setModalHoraOpen(!modalHoraOpen)}>
                     {dataHora} {modalHoraOpen ? (<i className='bx bx-chevron-right'></i>) : (<i className='bx bx-chevron-down'></i>)}
@@ -79,6 +88,22 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                         ))}
                     </div>
                 )}
+            </div>
+            </div>
+            <h1 style={{textAlign: 'center', fontSize: '28px'}}>Horários disponíveis</h1>
+
+            <div className="box-sessao">
+            {sessoes.map((sessao)=>{
+                const sep = sessao.dataHora.split(' ')
+                // console.log('sep', sep);
+                return <Link className='sessao-item' key={sessao.idSessao}>
+                <p className='titulo-data'>{sep[0]}</p>
+                <p className='titulo-hora'>{sep[1]}</p>
+                <p>{sessao.tipoSessao}</p>
+            </Link>
+            }
+                
+            )}
             </div>
         </div>
     );

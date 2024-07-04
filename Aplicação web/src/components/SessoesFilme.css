@@ -1,6 +1,7 @@
 .sessao {
     margin: 0 auto;
     width: 80%;
+    flex-direction: column;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -113,4 +114,38 @@
     background-color: transparent;
     text-align: center;
     width: 100%;
+  }
+  .box-sessao {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+  .sessao-item {
+    text-align: center;
+    background-color: #363333;
+    padding: 20px 20px;
+    border-radius: 10px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: rgba(42, 42, 42, 0.2) 0px 7px 29px 0px;
+    transition: 0.2s;
+  }
+
+  .titulo-data {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .titulo-hora {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .sessao-item:hover {
+    background-color: #292929;
   }
