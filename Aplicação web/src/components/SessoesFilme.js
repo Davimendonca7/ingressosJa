@@ -34,7 +34,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
             idFilme : 2
           }
         console.log(filtro);
-        axios.get(`http://localhost:8080/sessoes/filtro`, filtro)
+        axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
         .then(response => {
             console.log('response filtro', response.data);
             

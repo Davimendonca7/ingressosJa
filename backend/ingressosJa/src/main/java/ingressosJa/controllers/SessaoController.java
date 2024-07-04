@@ -26,7 +26,7 @@ public class SessaoController {
         return sessaoService.getSessoesGroupedByDate(idCinema, idFilme);
     }
 
-    @GetMapping("/filtro")
+    @PostMapping("/filtro")
     public List<Sessao> filtroSessao(@RequestBody FiltroSesssao filtroSesssao){
         return  sessaoService.filtroSessao(filtroSesssao);
     }
