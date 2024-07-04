@@ -25,7 +25,7 @@ public class SessaoService {
     public List<Sessao> filtroSessao(FiltroSesssao filtroSesssao){
 
         if(filtroSesssao.getTipoSessao().equals("Todos")){
-         return sessaoRepository.findSessoesByDate(filtroSesssao.getData());
+         return sessaoRepository.findSessoesByDate(filtroSesssao.getData(), filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
         }else{
             return sessaoRepository.findSessoesByDateAndTipoSessao(filtroSesssao.getData(), filtroSesssao.getTipoSessao(),
                     filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
