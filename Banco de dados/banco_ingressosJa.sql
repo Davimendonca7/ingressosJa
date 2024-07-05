@@ -26,8 +26,6 @@ idAssento INT PRIMARY KEY AUTO_INCREMENT,
 fkSala int,
 numero varchar(4),
 fkTipo int,
-fkCinema int,
-foreign key (fkCinema) references cinema(idCinema),
 foreign key (fkSala) references sala(idSala),
 foreign key (fkTipo) references tipo(idTipo));
 
@@ -157,7 +155,7 @@ INSERT INTO filme (titulo, descricao, capa, genero, duracaoMin, classificacao, e
 ('O Cavaleiro das Trevas', 'Batman enfrenta o Coringa, um vilão anárquico que ameaça Gotham.', 'https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg', 'Ação', 152, '14+', 'Em cartaz'),
 ('A Origem dos Guardiões', 'Um grupo de guardiões mágicos se une para proteger a esperança das crianças.', 'https://upload.wikimedia.org/wikipedia/en/7/7e/Rise_of_the_Guardians_poster.jpg', 'Animação', 97, 'Livre', 'Em breve'),
 ('Gladiador', 'Um general romano busca vingança contra o imperador corrupto que matou sua família.', 'https://upload.wikimedia.org/wikipedia/en/8/8d/Gladiator_ver1.jpg', 'Ação', 155, '16+', 'Em breve');
-
+select f.idFilme, f.titulo, f.exibicao from filme as f;
 
 -- Cinema 1, Sala 1
 INSERT INTO assento (fkSala, numero, fkTipo) VALUES
@@ -484,78 +482,78 @@ INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
 
 -- Cinema 2, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(3, 5, '2024-07-09 14:00:00', '2D'),
-(3, 6, '2024-07-09 17:00:00', '3D'),
-(3, 7, '2024-07-10 14:00:00', '2D'),
+(3, 1, '2024-07-09 14:00:00', '2D'),
+(3, 7, '2024-07-09 17:00:00', '3D'),
+(3, 10, '2024-07-10 14:00:00', '2D'),
 (3, 8, '2024-07-10 17:00:00', '3D');
 
 -- Cinema 2, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(4, 5, '2024-07-11 14:00:00', '2D'),
-(4, 6, '2024-07-11 17:00:00', '3D'),
-(4, 7, '2024-07-12 14:00:00', '2D'),
+(4, 10, '2024-07-11 14:00:00', '2D'),
+(4, 11, '2024-07-11 17:00:00', '3D'),
+(4, 12, '2024-07-12 14:00:00', '2D'),
 (4, 8, '2024-07-12 17:00:00', '3D');
 
 -- Cinema 3, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(5, 1, '2024-07-13 14:00:00', '2D'),
-(5, 2, '2024-07-13 17:00:00', '3D'),
-(5, 3, '2024-07-14 14:00:00', '2D'),
-(5, 4, '2024-07-14 17:00:00', '3D');
+(5, 7, '2024-07-13 14:00:00', '2D'),
+(5, 5, '2024-07-13 17:00:00', '3D'),
+(5, 2, '2024-07-14 14:00:00', '2D'),
+(5, 9, '2024-07-14 17:00:00', '3D');
 
 -- Cinema 3, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(6, 1, '2024-07-15 14:00:00', '2D'),
-(6, 2, '2024-07-15 17:00:00', '3D'),
+(6, 10, '2024-07-15 14:00:00', '2D'),
+(6, 12, '2024-07-15 17:00:00', '3D'),
 (6, 3, '2024-07-16 14:00:00', '2D'),
-(6, 4, '2024-07-16 17:00:00', '3D');
+(6, 7, '2024-07-16 17:00:00', '3D');
 
 -- Cinema 4, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(7, 1, '2024-07-17 14:00:00', '2D'),
-(7, 2, '2024-07-17 17:00:00', '3D'),
-(7, 3, '2024-07-18 14:00:00', '2D'),
-(7, 4, '2024-07-18 17:00:00', '3D');
+(7, 8, '2024-07-17 14:00:00', '2D'),
+(7, 12, '2024-07-17 17:00:00', '3D'),
+(7, 2, '2024-07-18 14:00:00', '2D'),
+(7, 5, '2024-07-18 17:00:00', '3D');
 
 -- Cinema 4, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(8, 1, '2024-07-19 14:00:00', '2D'),
-(8, 2, '2024-07-19 17:00:00', '3D'),
-(8, 3, '2024-07-20 14:00:00', '2D'),
-(8, 4, '2024-07-20 17:00:00', '3D');
+(8, 12, '2024-07-19 14:00:00', '2D'),
+(8, 11, '2024-07-19 17:00:00', '3D'),
+(8, 7, '2024-07-20 14:00:00', '2D'),
+(8, 8, '2024-07-20 17:00:00', '3D');
 
 -- Cinema 5, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(9, 1, '2024-07-21 14:00:00', '2D'),
-(9, 2, '2024-07-21 17:00:00', '3D'),
-(9, 3, '2024-07-22 14:00:00', '2D'),
-(9, 4, '2024-07-22 17:00:00', '3D');
+(9, 4, '2024-07-21 14:00:00', '2D'),
+(9, 9, '2024-07-21 17:00:00', '3D'),
+(9, 2, '2024-07-22 14:00:00', '2D'),
+(9, 8, '2024-07-22 17:00:00', '3D');
 
 -- Cinema 5, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(10, 1, '2024-07-23 14:00:00', '2D'),
-(10, 2, '2024-07-23 17:00:00', '3D'),
-(10, 3, '2024-07-24 14:00:00', '2D'),
-(10, 4, '2024-07-24 17:00:00', '3D');
+(10, 2, '2024-07-23 14:00:00', '2D'),
+(10, 7, '2024-07-23 17:00:00', '3D'),
+(10, 10, '2024-07-24 14:00:00', '2D'),
+(10, 8, '2024-07-24 17:00:00', '3D');
 
 -- Cinema 6, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(11, 1, '2024-07-25 14:00:00', '2D'),
-(11, 2, '2024-07-25 17:00:00', '3D'),
+(11, 10, '2024-07-25 14:00:00', '2D'),
+(11, 12, '2024-07-25 17:00:00', '3D'),
 (11, 3, '2024-07-26 14:00:00', '2D'),
 (11, 4, '2024-07-26 17:00:00', '3D');
 
 -- Cinema 6, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(12, 1, '2024-07-27 14:00:00', '2D'),
-(12, 2, '2024-07-27 17:00:00', '3D'),
-(12, 3, '2024-07-28 14:00:00', '2D'),
-(12, 4, '2024-07-28 17:00:00', '3D');
+(12, 2, '2024-07-27 14:00:00', '2D'),
+(12, 6, '2024-07-27 17:00:00', '3D'),
+(12, 8, '2024-07-28 14:00:00', '2D'),
+(12, 10, '2024-07-28 17:00:00', '3D');
 
 -- Cinema 7, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(13, 1, '2024-07-29 14:00:00', '2D'),
-(13, 2, '2024-07-29 17:00:00', '3D'),
+(13, 12, '2024-07-29 14:00:00', '2D'),
+(13, 10, '2024-07-29 17:00:00', '3D'),
 (13, 3, '2024-07-30 14:00:00', '2D'),
 (13, 4, '2024-07-30 17:00:00', '3D');
 
@@ -568,101 +566,101 @@ INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
 
 -- Cinema 8, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(15, 1, '2024-08-02 14:00:00', '2D'),
-(15, 2, '2024-08-02 17:00:00', '3D'),
-(15, 3, '2024-08-03 14:00:00', '2D'),
-(15, 4, '2024-08-03 17:00:00', '3D');
+(15, 10, '2024-08-02 14:00:00', '2D'),
+(15, 4, '2024-08-02 17:00:00', '3D'),
+(15, 6, '2024-08-03 14:00:00', '2D'),
+(15, 8, '2024-08-03 17:00:00', '3D');
 
 -- Cinema 8, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(16, 1, '2024-08-04 14:00:00', '2D'),
-(16, 2, '2024-08-04 17:00:00', '3D'),
-(16, 3, '2024-08-05 14:00:00', '2D'),
-(16, 4, '2024-08-05 17:00:00', '3D');
+(16, 2, '2024-08-04 14:00:00', '2D'),
+(16, 1, '2024-08-04 17:00:00', '3D'),
+(16, 9, '2024-08-05 14:00:00', '2D'),
+(16, 5, '2024-08-05 17:00:00', '3D');
 
 -- Cinema 9, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(17, 1, '2024-08-06 14:00:00', '2D'),
-(17, 2, '2024-08-06 17:00:00', '3D'),
-(17, 3, '2024-08-07 14:00:00', '2D'),
-(17, 4, '2024-08-07 17:00:00', '3D');
+(17, 3, '2024-08-06 14:00:00', '2D'),
+(17, 6, '2024-08-06 17:00:00', '3D'),
+(17, 1, '2024-08-07 14:00:00', '2D'),
+(17, 8, '2024-08-07 17:00:00', '3D');
 
 -- Cinema 9, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
 (18, 1, '2024-08-08 14:00:00', '2D'),
-(18, 2, '2024-08-08 17:00:00', '3D'),
-(18, 3, '2024-08-09 14:00:00', '2D'),
-(18, 4, '2024-08-09 17:00:00', '3D');
+(18, 5, '2024-08-08 17:00:00', '3D'),
+(18, 9, '2024-08-09 14:00:00', '2D'),
+(18, 10, '2024-08-09 17:00:00', '3D');
 
 -- Cinema 10, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(19, 1, '2024-08-10 14:00:00', '2D'),
-(19, 2, '2024-08-10 17:00:00', '3D'),
-(19, 3, '2024-08-11 14:00:00', '2D'),
-(19, 4, '2024-08-11 17:00:00', '3D');
+(19, 11, '2024-08-10 14:00:00', '2D'),
+(19, 4, '2024-08-10 17:00:00', '3D'),
+(19, 6, '2024-08-11 14:00:00', '2D'),
+(19, 7, '2024-08-11 17:00:00', '3D');
 
 -- Cinema 10, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(20, 1, '2024-08-12 14:00:00', '2D'),
-(20, 2, '2024-08-12 17:00:00', '3D'),
+(20, 7, '2024-08-12 14:00:00', '2D'),
+(20, 8, '2024-08-12 17:00:00', '3D'),
 (20, 3, '2024-08-13 14:00:00', '2D'),
-(20, 4, '2024-08-13 17:00:00', '3D');
+(20, 1, '2024-08-13 17:00:00', '3D');
 
 -- Cinema 11, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(21, 1, '2024-08-14 14:00:00', '2D'),
+(21, 5, '2024-08-14 14:00:00', '2D'),
 (21, 2, '2024-08-14 17:00:00', '3D'),
-(21, 3, '2024-08-15 14:00:00', '2D'),
+(21, 8, '2024-08-15 14:00:00', '2D'),
 (21, 4, '2024-08-15 17:00:00', '3D');
 
 -- Cinema 11, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(22, 1, '2024-08-16 14:00:00', '2D'),
+(22, 10, '2024-08-16 14:00:00', '2D'),
 (22, 2, '2024-08-16 17:00:00', '3D'),
-(22, 3, '2024-08-17 14:00:00', '2D'),
-(22, 4, '2024-08-17 17:00:00', '3D');
+(22, 5, '2024-08-17 14:00:00', '2D'),
+(22, 9, '2024-08-17 17:00:00', '3D');
 
 -- Cinema 12, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(23, 1, '2024-08-18 14:00:00', '2D'),
-(23, 2, '2024-08-18 17:00:00', '3D'),
-(23, 3, '2024-08-19 14:00:00', '2D'),
-(23, 4, '2024-08-19 17:00:00', '3D');
+(23, 5, '2024-08-18 14:00:00', '2D'),
+(23, 9, '2024-08-18 17:00:00', '3D'),
+(23, 2, '2024-08-19 14:00:00', '2D'),
+(23, 1, '2024-08-19 17:00:00', '3D');
 
 -- Cinema 12, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(24, 1, '2024-08-20 14:00:00', '2D'),
-(24, 2, '2024-08-20 17:00:00', '3D'),
-(24, 3, '2024-08-21 14:00:00', '2D'),
-(24, 4, '2024-08-21 17:00:00', '3D');
+(24, 5, '2024-08-20 14:00:00', '2D'),
+(24, 9, '2024-08-20 17:00:00', '3D'),
+(24, 7, '2024-08-21 14:00:00', '2D'),
+(24, 10, '2024-08-21 17:00:00', '3D');
 
 -- Cinema 13, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(25, 1, '2024-08-22 14:00:00', '2D'),
+(25, 12, '2024-08-22 14:00:00', '2D'),
 (25, 2, '2024-08-22 17:00:00', '3D'),
-(25, 3, '2024-08-23 14:00:00', '2D'),
-(25, 4, '2024-08-23 17:00:00', '3D');
+(25, 11, '2024-08-23 14:00:00', '2D'),
+(25, 7, '2024-08-23 17:00:00', '3D');
 
 -- Cinema 13, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(26, 1, '2024-08-24 14:00:00', '2D'),
-(26, 2, '2024-08-24 17:00:00', '3D'),
-(26, 3, '2024-08-25 14:00:00', '2D'),
-(26, 4, '2024-08-25 17:00:00', '3D');
+(26, 8, '2024-08-24 14:00:00', '2D'),
+(26, 10, '2024-08-24 17:00:00', '3D'),
+(26, 2, '2024-08-25 14:00:00', '2D'),
+(26, 1, '2024-08-25 17:00:00', '3D');
 
 -- Cinema 14, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(27, 1, '2024-08-26 14:00:00', '2D'),
+(27, 5, '2024-08-26 14:00:00', '2D'),
 (27, 2, '2024-08-26 17:00:00', '3D'),
-(27, 3, '2024-08-27 14:00:00', '2D'),
+(27, 12, '2024-08-27 14:00:00', '2D'),
 (27, 4, '2024-08-27 17:00:00', '3D');
-
+select * from assento;
 -- Cinema 14, Sala 2
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
-(28, 1, '2024-08-28 14:00:00', '2D'),
-(28, 2, '2024-08-28 17:00:00', '3D'),
+(28, 12, '2024-08-28 14:00:00', '2D'),
+(28, 9, '2024-08-28 17:00:00', '3D'),
 (28, 3, '2024-08-29 14:00:00', '2D'),
-(28, 4, '2024-08-29 17:00:00', '3D');
+(28, 9, '2024-08-29 17:00:00', '3D');
 
 
 SELECT * FROM sessao WHERE DATE(dataHora) = '2024-07-01' AND tipoSessao = '2D';
@@ -688,7 +686,7 @@ select * from cliente;
 select * from ingresso;
 select * from filme;
 select * from sessao;
-
+select * from assento left join ingresso on fkAssento = idAssento;
 -- Inserindo dados na tabela ingresso
 
 INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES

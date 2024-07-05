@@ -21,10 +21,8 @@ public class Assento {
     @JsonIgnore
     private Sala sala;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkTipo")
-    @JsonIgnore
-    private Tipo tipo;
+    @Column(name = "Tipo")
+    private String tipo;
 
     public Integer getIdAssento() {
         return idAssento;
@@ -50,13 +48,11 @@ public class Assento {
         this.sala = sala;
     }
 
-    public Tipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-
 }

@@ -25,6 +25,8 @@ public class Sessao {
     @JsonIgnore
     private Sala sala;
 
+    private Integer idSala;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fkFilme")
     @JsonIgnore
@@ -33,6 +35,14 @@ public class Sessao {
     @OneToMany(mappedBy = "sessao", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Ingresso> ingressos;
+
+    public Integer getIdSala() {
+        return idSala;
+    }
+
+    public void setIdSala(Integer idSala) {
+        this.idSala = idSala;
+    }
 
     public Integer getIdSessao() {
         return idSessao;

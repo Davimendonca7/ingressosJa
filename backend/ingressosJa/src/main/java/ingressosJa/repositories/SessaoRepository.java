@@ -40,9 +40,6 @@ public interface SessaoRepository extends JpaRepository<Sessao, Integer> {
     List<Object[]> findGroupedByDate(@Param("cinemaId") Integer idCinema, @Param("filmeId") Integer idFilme);
 
 
-//    @Query(value = "SELECT * FROM sessao WHERE DATE(dataHora) = :data AND tipoSessao = :tipoSessao", nativeQuery = true)
-//    List<Sessao> findSessoesByDateAndTipoSessao(@Param("data") String data, @Param("tipoSessao") String tipoSessao);
-
     @Query(value = "SELECT * " +
             "FROM sessao s " +
             "JOIN sala sa ON s.fkSala = sa.idSala " +

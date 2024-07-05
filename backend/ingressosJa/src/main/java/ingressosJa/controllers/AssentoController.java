@@ -1,5 +1,6 @@
 package ingressosJa.controllers;
 
+import ingressosJa.DTO.AssentosSessao;
 import ingressosJa.Services.AssentoService;
 import ingressosJa.models.Assento;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class AssentoController {
     @Autowired
     private AssentoService assentoService;
 
-    @GetMapping("/sessao/{idSessao}")
-    public List<Assento> getAssentosBySalaIdAndSessaoId(@PathVariable Integer idSessao) {
-        return assentoService.listarAssentos(idSessao);
+    @GetMapping("/sessao/{idSessao}/sala/{idSala}")
+    public List<AssentosSessao> getAssentosBySalaIdAndSessaoId(@PathVariable Integer idSessao, @PathVariable Integer idSala) {
+        return assentoService.listarAssentos(idSessao, idSala);
     }
 
 

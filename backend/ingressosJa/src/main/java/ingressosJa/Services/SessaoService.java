@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,10 +26,27 @@ public class SessaoService {
     public List<Sessao> filtroSessao(FiltroSesssao filtroSesssao){
 
         if(filtroSesssao.getTipoSessao().equals("Todos")){
+
          return sessaoRepository.findSessoesByDate(filtroSesssao.getData(), filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
         }else{
-            return sessaoRepository.findSessoesByDateAndTipoSessao(filtroSesssao.getData(), filtroSesssao.getTipoSessao(),
+            List<Sessao> lista =  sessaoRepository.findSessoesByDateAndTipoSessao(filtroSesssao.getData(), filtroSesssao.getTipoSessao(),
                     filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
+
+            List<Sessao> listaAtualizada = new ArrayList<>();
+
+            for(Sessao sessao : lista){
+                Sessao sessao1 = new Sessao();
+
+                sessao1.setIdSessao(sessao.getIdSessao());
+                sessao1.setDataHora(sessao.getDataHora());
+                sessao1.setTipoSessao(sessao.getTipoSessao());
+                sessao1.setIdSala(sessao.getSala().getIdSala());
+
+                listaAtualizada.add(sessao1);
+            }
+            System.out.println(lista.get(0).getSala());
+
+            return listaAtualizada;
         }
     }
 }
