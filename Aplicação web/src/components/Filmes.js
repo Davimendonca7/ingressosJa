@@ -11,7 +11,7 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
   
   const [activeButton, setActiveButton] = useState('emCartaz');
   const [data, setData] = useState([])
-  
+  const [loading, setLoading] = useState(true)
   const handleButtonClick = (buttonType) => {
     
     setActiveButton(buttonType);
@@ -24,13 +24,15 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
   
   
   // console.log('id corre?', cidade);
+
   useEffect(() => {
-    console.log('estado:', activeButton);
+    if(cidade !== undefined){
    if(activeButton === 'emCartaz'){
     axios.get(`http://localhost:8080/filmes/${cidade}/emCartaz`)
     .then(response => {
-        console.log('filmes', response.data);
+        // console.log('filmes', response.data);
         setData(response.data)
+        setLoading(false)
         
     })
     .catch(error => {
@@ -39,14 +41,17 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
    }else {
     axios.get(`http://localhost:8080/filmes/${cidade}/emBreve`)
     .then(response => {
-        // console.log('filmes', response.data);
+      // console.log('no ebreve');
+        console.log('filmes em breve', response.data);
         setData(response.data)
+        setLoading(false)
         
     })
     .catch(error => {
         console.error('Erro ao enviar requisição:', error);
     });
    }
+  }
     }, [cidade, activeButton]); 
 
   return (
@@ -80,6 +85,7 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
           </button>
         </div>
         <div className="filmes-container-list">
+          {loading && <p>Carregando...</p>}
           {data.map((d) => {
            
               return (

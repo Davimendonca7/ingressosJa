@@ -10,25 +10,32 @@ const Header = ({onDataChanged}) => {
     const [cidade, setCidade] = useState([])
     const [openModalUser, setOpenModalUser] = useState(false)
     const [openList, setOpenlist] = useState(false) 
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         axios.get('http://localhost:8080/cinema/listar')
-            .then(response => {
-                console.log('oq tem aqui', response.data);
+        .then(response => {
+               
+                // console.log(loading);
+                // console.log('oq tem aqui', response.data);
                 setLocations(response.data);
                 if (response.data.length > 0) {
                     const firstCity = response.data[0].nome;
                     const firstCityId = response.data[0].idCinema;
                     setCidade([firstCity, firstCityId]);
                 }
+                // console.log(loading);
+                
+                setLoading(false)
             })
             .catch(error => {
                 console.error('Erro ao enviar requisição:', error);
             });
         }, []); 
-        // console.log('cidade kkkkkk', cidade);
-        onDataChanged(cidade);
-    // console.log('h', locations);
-    // console.log('cidade', cidade);
+        useEffect(() => {
+            if (cidade.length > 0) {
+              onDataChanged(cidade);
+            }
+          }, [cidade, onDataChanged]);
   return (
     <div className='headerContainer'>
       <div className="container">
@@ -42,7 +49,7 @@ const Header = ({onDataChanged}) => {
                     }else {
                         setOpenlist(true)
                     }
-                }}>{cidade[0]}<i className='bx bxs-chevron-down'></i></button>
+                }}>{loading && <p>Carregando...</p>}{cidade[0]}<i className='bx bxs-chevron-down'></i></button>
                 <div className="col-1-list-open">
                 {openList === true && (locations.map((location)=>{
                     var a = location.endereco.split(',')

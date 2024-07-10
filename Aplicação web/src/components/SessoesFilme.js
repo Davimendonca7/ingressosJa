@@ -18,9 +18,10 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
         axios.get(`http://localhost:8080/sessoes/cinema/${idCinema}/filme/${idFilme}`)
         .then(response => {
             const fetchedHoras = response.data;
+            // console.log('bbb', fetchedHoras[0][0]);
             setHoras(fetchedHoras);
             if (dataHora === '' && fetchedHoras.length > 0) {
-                setDataHora(fetchedHoras[0]);
+                setDataHora(fetchedHoras[0][0]);
             }
         })
         .catch(error => {
@@ -28,30 +29,49 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
         });
     }, [dataHora, idCinema, idFilme]); 
     
+    function formatDate(dateString) {
+        const daysOfWeek = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+    const months = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+    
+    const date = new Date(dateString);
+    
+    // Ajustar a data para evitar problemas de fuso horário
+    const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+    
+    const dayOfWeek = daysOfWeek[utcDate.getUTCDay()];
+    const day = utcDate.getUTCDate();
+    const month = months[utcDate.getUTCMonth()];
+    
+    return `${dayOfWeek}, ${day} ${month}`;
+    }
+    
+
     useEffect(() => {
-        console.log('t', dataTipo);
-        const filtro = {
-            data: dataHora[0],
-            tipoSessao: dataTipo,
-            idCinema: idCinema,
-            idFilme: idFilme
-          }
-        console.log(filtro);
-        axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
-        .then(response => {
-            console.log('response filtro', response.data);
-            setSessoes(response.data)
-        })
-        .catch(error => {
-            console.error('Erro ao enviar requisição:', error);
-        });
+        // console.log('t', dataHora[0]);
+        if(dataHora !== "" ){
+            const filtro = {
+                data: dataHora,
+                tipoSessao: dataTipo,
+                idCinema: idCinema,
+                idFilme: idFilme
+              }
+            // console.log(filtro);
+            axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
+            .then(response => {
+                console.log('response filtro', response.data);
+                setSessoes(response.data)
+            })
+            .catch(error => {
+                console.error('Erro ao enviar requisição:', error);
+            });
+        }
     }, [dataHora, dataTipo, idCinema, idFilme]); 
 
     return (
         <div className='sessao'>
-            <h1 style={{textAlign: 'center', fontSize: '28px'}}>Escolha ohorario e o tipo de sessão</h1>
+            <h1 style={{fontSize: '28px'}}>Escolha o <span className="destac">horario</span> e o tipo de <span className="destac">sessão</span></h1>
             <div style={{display: 'flex',
-                justifyContent: 'center',
+                
                 gap: '20px',
                 height: '70px'
             }}>
@@ -62,9 +82,12 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                 {modalHoraOpen && (
                     <div className="horarios">
                         {horas.map((h) => (
+                            
+                            
                             <button key={h} value={h} onClick={(e) => {
                                 setDataHora(e.target.value);
                                 setModalHoraOpen(false);
+                                {console.log('aaaa', e.target.value)}
                             }}>
                                 {h}
                             </button>
@@ -90,14 +113,15 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                 )}
             </div>
             </div>
-            <h1 style={{textAlign: 'center', fontSize: '28px'}}>Horários disponíveis</h1>
+            <h1 style={{fontSize: '28px'}}>Horários disponíveis</h1>
 
             <div className="box-sessao">
             {sessoes.map((sessao)=>{
                 const sep = sessao.dataHora.split(' ')
                 // console.log('sep', sep);
-                return <Link className='sessao-item' key={sessao.idSessao}>
-                <p className='titulo-data'>{sep[0]}</p>
+                const dateFormat = formatDate(sep[0])
+                return <Link className='sessao-item' key={sessao.idSessao} to={`/comprar-ingresso/${sessao.idSessao}`}>
+                <p className='titulo-data'>{dateFormat}</p>
                 <p className='titulo-hora'>{sep[1]}</p>
                 <p>{sessao.tipoSessao}</p>
             </Link>

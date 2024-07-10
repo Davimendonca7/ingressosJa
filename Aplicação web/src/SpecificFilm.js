@@ -9,8 +9,10 @@ const SpecificFilm = ({filmeSelecionado}) => {
   return (
     <div>
       <HeaderFilmes/>
+        <div style={{display:'flex',width: '80%' ,margin: '0 auto'}}>
         <BannerFilme nome={filmeSelecionado[0]} url={filmeSelecionado[1]} description={filmeSelecionado[2]} duracao={filmeSelecionado[3]} genero={filmeSelecionado[4]} classificacao={filmeSelecionado[5]}/>
         <SessoesFilme idFilme={filmeSelecionado[6]} idCinema={filmeSelecionado[7]}/>
+        </div>
     </div>
   )
 }

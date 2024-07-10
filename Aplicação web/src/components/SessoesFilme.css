@@ -3,7 +3,7 @@
     width: 80%;
     flex-direction: column;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     gap: 20px;
 }
 .sessao .btnHoraSessao {
@@ -19,6 +19,9 @@
 }
 .bx-chevron-down, .bx-chevron-right {
   margin-left: 20px;
+}
+.destac {
+  color: #FFC727;
 }
 .sessao .horarios {
     margin: 0 auto;
@@ -42,7 +45,7 @@
     padding: 10px 10px;
     border: none;
     background-color: transparent;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
 
 }
@@ -112,16 +115,36 @@
     padding: 10px 20px;
     border: none;
     background-color: transparent;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
   }
   .box-sessao {
+    width: 100%;
+    flex-wrap: wrap;
     display: flex;
     gap: 20px;
-    justify-content: center;
-    width: 500px;
-    margin: 0 auto;
-    margin-bottom: 30px;
+    height: 300px;
+    overflow-x: hidden;
+  }
+  .sessao .box-sessao::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+  }
+
+  .sessao .box-sessao::-webkit-scrollbar {
+    width: 10px; 
+  }
+  
+  .sessao .box-sessao::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+  
+  .sessao .box-sessao::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+  
+  .sessao .box-sessao::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
   }
   .sessao-item {
     text-align: center;

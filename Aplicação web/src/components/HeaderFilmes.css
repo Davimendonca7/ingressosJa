@@ -1,6 +1,5 @@
 .header-filmes {
-    width: 100%;
-    position: fixed;
+    margin-bottom: 60px;
     background-color: #212121;
 }
 .header-filmes .container-filmes {
