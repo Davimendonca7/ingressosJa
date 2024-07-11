@@ -22,15 +22,13 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
     onFilmeSelecionado(nome, url, description, duracao, genero, classificacao, id);
   };
   
-  
-  // console.log('id corre?', cidade);
 
   useEffect(() => {
     if(cidade !== undefined){
    if(activeButton === 'emCartaz'){
     axios.get(`http://localhost:8080/filmes/${cidade}/emCartaz`)
     .then(response => {
-        // console.log('filmes', response.data);
+        console.log('filmes', response.data);
         setData(response.data)
         setLoading(false)
         
@@ -41,7 +39,7 @@ const Filmes = ({ cidade, onFilmeSelecionado }) => {
    }else {
     axios.get(`http://localhost:8080/filmes/${cidade}/emBreve`)
     .then(response => {
-      // console.log('no ebreve');
+      console.log('no ebreve');
         console.log('filmes em breve', response.data);
         setData(response.data)
         setLoading(false)

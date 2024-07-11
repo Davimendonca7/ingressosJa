@@ -7,15 +7,16 @@
     gap: 20px;
 }
 .sessao .btnHoraSessao {
-    border-radius: 10px;
+    border-radius: 2px;
     display: block;
     padding: 20px 20px;
     border: none;
-    width: 220px;
+    width: 310px;
     font-size: 20px;
-    background-color: #383838;
+    background-color: #ffffff;
     font-weight: bold;
     cursor: pointer;
+    color: #000;
 }
 .bx-chevron-down, .bx-chevron-right {
   margin-left: 20px;
@@ -26,8 +27,8 @@
 .sessao .horarios {
     margin: 0 auto;
     /* padding: 15px; */
-    background-color: #454545;
-    width: 220px;
+    background-color: #e7e7e7;
+    max-width: 310px;
     position: relative;
     bottom: 10px;
     display: flex;
@@ -38,11 +39,14 @@
     /* gap: 20px; */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    color: #000;
 }
 .sessao .horarios button {
     display: block;
     cursor: pointer;
     padding: 10px 10px;
+    color: #000;
+    font-weight: bold;
     border: none;
     background-color: transparent;
     /* text-align: center; */
@@ -83,7 +87,7 @@
     background-color: #555; 
   }
   .escolherTipo .btnTipoSessao {
-    border-radius: 10px;
+    border-radius: 2px;
     display: block;
     padding: 20px 20px;
     border: none;
@@ -150,8 +154,9 @@
     text-align: center;
     background-color: #363333;
     padding: 20px 20px;
-    border-radius: 10px;
+    border-radius: 2px;
     height: 100px;
+    width: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

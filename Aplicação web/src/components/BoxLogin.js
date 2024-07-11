@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../components/BoxLogin.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import imgLogin from '../assets/Popcorns.gif';
-import vetorLogo from '../assets/logo.svg'
+
 
 
 const BoxLogin = () => {
@@ -34,13 +33,12 @@ const BoxLogin = () => {
   const MySwal = withReactContent(Swal)
   axios.post('http://localhost:8080/cliente/autenticar', data)
       .then(response => {
-          console.log('Resposta do servidor:', response.data.mensagem);
+      
           if(response.data.mensagem === 'Autenticado com sucesso'){
-            console.log('aaaaaaaa');
+            
             MySwal.fire({
               position: "top-end",
               icon: "success",
-              iconColor: '#FFC727',
               title: "Login reliazado com sucesso",
               showConfirmButton: false,
               timer: 1500,
@@ -78,29 +76,34 @@ const BoxLogin = () => {
   return (
    
       <div className='box-login'>
-      <img className='imgPopcornLogin' src={imgLogin} alt="" />
+
       <div className="form-box">
-      <div className="logoDiv">
-      <img className='logoVetor' src={vetorLogo} alt="" />
-      </div>
+      
 
         <form onSubmit={handleSubmit}>
         <div>
             <label htmlFor="email">Nome de usuário</label>
+            <div className="input-icon">
+            <i class='bx bx-user'></i>
             <input type="text" name="email" placeholder="Digite seu nome de usuário" value={nomeDeUsuario} onChange={(e) => setNomeDeUsuario(e.target.value)} />
+            </div>
             {nomeDeUsuarioVisible && (<p className='alert-input'>Usuário inválido</p>)}
           </div>
           <div>
             <label htmlFor="email">E-mail</label>
-            <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div className="input-icon">
+            <i class='bx bx-user'></i>
             {emailVisible && (<p className='alert-input'>E-mail não encontrado</p>)}
-
+            <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
           </div>
             <div>
               <label htmlFor="senha">Senha</label>
+              <div className="input-icon">
+              <i class='bx bx-lock-alt'></i>
               <input type="password" name="senha" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+              </div>
               {senhaVisible && (<p className='alert-input'>Senha não coincide com o usuário</p>)}
-
             </div>          
           <input type="submit" value={'Entrar'} className='btnSubmit' />
         </form>

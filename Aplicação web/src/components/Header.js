@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 const Header = ({onDataChanged}) => {
+    
     const [locations, setLocations] = useState('')
     const [cidade, setCidade] = useState([])
     const [openModalUser, setOpenModalUser] = useState(false)
@@ -15,15 +16,12 @@ const Header = ({onDataChanged}) => {
         axios.get('http://localhost:8080/cinema/listar')
         .then(response => {
                
-                // console.log(loading);
-                // console.log('oq tem aqui', response.data);
                 setLocations(response.data);
                 if (response.data.length > 0) {
                     const firstCity = response.data[0].nome;
                     const firstCityId = response.data[0].idCinema;
                     setCidade([firstCity, firstCityId]);
                 }
-                // console.log(loading);
                 
                 setLoading(false)
             })
@@ -49,7 +47,8 @@ const Header = ({onDataChanged}) => {
                     }else {
                         setOpenlist(true)
                     }
-                }}>{loading && <p>Carregando...</p>}{cidade[0]}<i className='bx bxs-chevron-down'></i></button>
+                  
+                }}>{loading && <p>Carregando...</p>}{cidade[0]}{openList ? (<i className='bx bx-chevron-right'></i>) : (<i className='bx bx-chevron-down'></i>)}</button>
                 <div className="col-1-list-open">
                 {openList === true && (locations.map((location)=>{
                     var a = location.endereco.split(',')
@@ -80,12 +79,12 @@ const Header = ({onDataChanged}) => {
                     }else {
                         setOpenModalUser(true)
                     }
-                    // console.log('aqui', openModalUser);
+                   
                 }}
                 className='btnUser'>
                 <i className='bx bxs-user-circle'></i>
                 <span>Entrar ou cadastrar-se</span>
-                </button>) : (<Link to={"/conta"}><i style={{fontSize: '40px'}} className='bx bxs-user-circle' ></i></Link>)}
+                </button>) : (<Link to={`/conta/${sessionStorage.NOME_USUARIO}`}><i style={{fontSize: '40px'}} className='bx bxs-user-circle' ></i></Link>)}
             </div>
             {openModalUser === true && (
                 <div className="modalUser">

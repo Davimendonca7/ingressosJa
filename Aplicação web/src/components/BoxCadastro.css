@@ -27,10 +27,16 @@
     width: calc(100% - 32px);
     
     padding: 18px;
-    border-radius: 10px;
+    border-radius: 0;
     border: none;
-    background-color: #2F2D2A;
+    background-color: transparent;
+    outline: none;
     
+}
+.input-icon {
+    border-bottom:2px solid #636363;
+    display: flex;
+    align-items: center;
 }
 .box-flex {
     display: flex;

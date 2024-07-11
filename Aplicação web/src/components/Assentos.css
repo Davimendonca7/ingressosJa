@@ -1,40 +1,71 @@
 .assentos-container {
-    max-width: 800px;
-    /* margin: 0 auto; */
-    text-align: center;
-  }
+  text-align: center;
+  margin: 20px;
+  margin-top: 0;
+}
+
+.assentos-grid {
+  display: grid;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.assento, .grid-label {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  border-radius: 20%;
+  background-color: transparent;
+  font-size: 18px;
+}
+.assento {
+  border: none;
+}
+.assento.disponivel {
+cursor: pointer;
   
-  .assentos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px; /* Espaçamento entre assentos */
-    margin-top: 20px;
-  }
+  background-color: #ffffff; /* verde claro */
+}
+
+.assento.ocupado {
+  background-color: #5e5e5e; /* vermelho claro */
+  color: #fff;
+}
+
+.grid-label {
+  color: #c9c9c9;
+  font-size: 12px;
+  background-color: transparent;
+  border: none;
+}
+.legenda {
+  text-align: left;
+}
+.assento-disponivel {
+  width: 20px;
+  height: 20px;
+  border-radius: 20%;
+  background-color: #fff;
+}
+.col-assento {
   
-  .assento {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    /* border: 1px solid #ccc; */
-    border-radius: 50%; /* Borda arredondada para formato de bolinha */
-    cursor: pointer;
-    background-color: #f0f0f0; /* Cor de fundo padrão */
-    color: #333; /* Cor do texto padrão */
-  }
-  
-  .assento.disponivel {
-    background-color: #f0f0f0; /* Cor de fundo para assentos disponíveis */
-    color: #333; /* Cor do texto para assentos disponíveis */
-  }
-  
-  .assento.ocupado {
-    font-weight: 100;
-    background-color: #5c5c5c; /* Cor de fundo para assentos ocupados */
-    color: #000000; /* Cor do texto para assentos ocupados */
-  }
-  
+  display: flex;
+  gap: 10px;
+}
+.legenda {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.assento-indisponivel {
+  width: 20px;
+  height: 20px;
+  border-radius: 20%;
+  background-color: #5e5e5e;
+
+}

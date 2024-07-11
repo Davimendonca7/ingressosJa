@@ -10,7 +10,7 @@ const ComprarIngresso = ({cidade, nome ,url}) => {
   return (
     <div style={{padding: '30px'}}>
       <HeaderLoginCadastro data='Escolha os assentos'/>
-      <div style={{display: 'flex', marginTop: '130px', justifyContent: 'center'}}>
+      <div style={{display: 'flex', marginTop: '90px', justifyContent: 'center'}}>
         <MenuLateralComprar cidade={cidade} nome={nome} url={url}/>
         <Assentos/>
       </div>

@@ -7,6 +7,7 @@ import Login from './Login';
 import Cadastrar from './Cadastrar';
 import SpecificFilm from './SpecificFilm';
 import ComprarIngresso from './ComprarIngresso';
+import Conta from './Conta';
 
 function App() {
   
@@ -34,7 +35,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/cadastrar' element={<Cadastrar/>}/>
           <Route path='/filme' element={<SpecificFilm filmeSelecionado={dataFilmeSelecionado} />}/>
-          <Route path='/conta' element={<h1>davi é corno</h1>}/>
+          <Route path='/conta/:nomeConta' element={<Conta/>}/>
           <Route path='/comprar-ingresso/:idSessao'  element={<ComprarIngresso cidade={dataCidade} nome={dataFilmeSelecionado[0]} url={dataFilmeSelecionado[1]}/>} />
       </Routes>
     </BrowserRouter>

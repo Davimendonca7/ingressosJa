@@ -18,7 +18,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
         axios.get(`http://localhost:8080/sessoes/cinema/${idCinema}/filme/${idFilme}`)
         .then(response => {
             const fetchedHoras = response.data;
-            // console.log('bbb', fetchedHoras[0][0]);
+           
             setHoras(fetchedHoras);
             if (dataHora === '' && fetchedHoras.length > 0) {
                 setDataHora(fetchedHoras[0][0]);
@@ -35,7 +35,6 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
     
     const date = new Date(dateString);
     
-    // Ajustar a data para evitar problemas de fuso horário
     const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
     
     const dayOfWeek = daysOfWeek[utcDate.getUTCDay()];
@@ -47,7 +46,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
     
 
     useEffect(() => {
-        // console.log('t', dataHora[0]);
+     
         if(dataHora !== "" ){
             const filtro = {
                 data: dataHora,
@@ -55,7 +54,8 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                 idCinema: idCinema,
                 idFilme: idFilme
               }
-            // console.log(filtro);
+            
+            console.log('response filtro', filtro);
             axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
             .then(response => {
                 console.log('response filtro', response.data);
@@ -77,19 +77,19 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
             }}>
             <div className="escolherHora">
                 <button className='btnHoraSessao' onClick={() => setModalHoraOpen(!modalHoraOpen)}>
-                    {dataHora} {modalHoraOpen ? (<i className='bx bx-chevron-right'></i>) : (<i className='bx bx-chevron-down'></i>)}
+                    {formatDate(dataHora)} {modalHoraOpen ? (<i className='bx bx-chevron-right' style={{color: '#000'}}></i>) : (<i className='bx bx-chevron-down' style={{color: '#000'}}></i>)}
                 </button>
                 {modalHoraOpen && (
                     <div className="horarios">
-                        {horas.map((h) => (
+                        {horas.map((h, i) => (
                             
                             
-                            <button key={h} value={h} onClick={(e) => {
+                            <button key={i} value={h} onClick={(e) => {
                                 setDataHora(e.target.value);
                                 setModalHoraOpen(false);
-                                {console.log('aaaa', e.target.value)}
+                               
                             }}>
-                                {h}
+                                {formatDate(h)}
                             </button>
                         ))}
                     </div>
@@ -118,7 +118,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
             <div className="box-sessao">
             {sessoes.map((sessao)=>{
                 const sep = sessao.dataHora.split(' ')
-                // console.log('sep', sep);
+               
                 const dateFormat = formatDate(sep[0])
                 return <Link className='sessao-item' key={sessao.idSessao} to={`/comprar-ingresso/${sessao.idSessao}`}>
                 <p className='titulo-data'>{dateFormat}</p>

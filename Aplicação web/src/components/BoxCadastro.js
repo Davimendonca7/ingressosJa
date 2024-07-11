@@ -4,7 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import InputMask from 'react-input-mask';
-import imgLogin from '../assets/Popcorns.gif';
+
 import './BoxCadastro.css';
 
 const BoxCadastro = () => {
@@ -96,7 +96,7 @@ const BoxCadastro = () => {
       const MySwal = withReactContent(Swal)
       axios.post('http://localhost:8080/cliente/cadastrar', data)
         .then(response => {
-          console.log('Resposta do servidor:', response.data);
+          
 
           if(response.data.mensagem === 'Username já existe'){
             setMensagemErroUsername("Nome de usuário já existe");
@@ -120,7 +120,8 @@ const BoxCadastro = () => {
             setSenha("");
             setTelefone("");
             setCpf("");
-            navigate('/login');
+            setTimeout(()=>{navigate('/login')}, 2000)
+
           }
         
   })
@@ -136,34 +137,49 @@ const BoxCadastro = () => {
 
   return (
     <div className='box-cadastro'>
-      <img className='imgPopcorn' src={imgLogin} alt="" />
+      {/* <img className='imgPopcorn' src={imgLogin} alt="" /> */}
       <div className="form-box">
+        
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">Nome completo</label>
+            <div className="input-icon">
+            <i class='bx bx-user'></i>
             <input type="text" name="name" placeholder="Digite seu nome completo" value={nomeCompleto} onChange={(e) => setNomeCompleto(e.target.value)} />
+            </div>
             {nomeCompletoVisible && (<p className='alert-input'>Nome completo inválido</p>)}
           </div>
           <div>
             <label htmlFor="name">Nome de usuário</label>
+            <div className="input-icon">
+            <i class='bx bx-user'></i>
             <input type="text" name="name" placeholder="Digite seu nome de usuário" value={nomeDeUsuario} onChange={(e) => setNomeDeUsuario(e.target.value)} />
-            {nomeDeUsuarioVisible && (<p className='alert-input'>{mensagemErroUsername}</p>)}
 
+            </div>
+            {nomeDeUsuarioVisible && (<p className='alert-input'>{mensagemErroUsername}</p>)}
           </div>
           <div>
             <label htmlFor="email">E-mail</label>
+            <div className="input-icon">
+            <i class='bx bx-envelope'></i>
             <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
             {emailVisible && (<p style={{width: '100%'}} className='alert-input'>{mensagemErroEmail}</p>)}
           </div>
           <div className="box-flex">
             <div>
               <label htmlFor="senha">Senha</label>
+              <div className="input-icon">
+              <i class='bx bx-lock-alt'></i>
               <input type="password" className='iptSenha' name="senha" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
-            {senhaVisible && (<p className='alert-input'>Senha deve ter pelo menos 6 caracteres</p>)}
+              </div>
+              {senhaVisible && (<p className='alert-input'>Senha deve ter pelo menos 6 caracteres</p>)}
 
             </div>
             <div>
               <label htmlFor="telefone">Telefone</label>
+              <div className="input-icon">
+              <i class='bx bx-phone'></i>
               <InputMask 
                 mask="(99) 99999-9999" 
                 value={telefone} 
@@ -172,12 +188,15 @@ const BoxCadastro = () => {
               >
                 {(inputProps) => <input {...inputProps} type="text" className='iptTelefone' name="telefone" placeholder="Digite seu telefone" />}
               </InputMask>
+              </div>
             {telefoneVisible && (<p className='alert-input'>Telefone inválido</p>)}
              
             </div>
           </div>
           <div>
             <label htmlFor="cpf">Cpf</label>
+            <div className="input-icon">
+            <i class='bx bxs-id-card'></i>
             <InputMask 
               mask="999.999.999-99" 
               value={cpf} 
@@ -186,8 +205,9 @@ const BoxCadastro = () => {
             >
               {(inputProps) => <input {...inputProps} type="text" name="cpf" placeholder="Digite seu cpf" />}
             </InputMask>
-            {cpfVisile && (<p className='alert-input'>Nome de usuário inválido</p>)}
 
+            </div>
+            {cpfVisile && (<p className='alert-input'>Nome de usuário inválido</p>)}
           </div>
           <input type="submit" value={'Cadastrar'} className='btnSubmit' />
         </form>
