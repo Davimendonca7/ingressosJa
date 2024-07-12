@@ -69,3 +69,13 @@ cursor: pointer;
   background-color: #5e5e5e;
 
 }
+.assento-indisponivel {
+  width: 20px;
+  height: 20px;
+  border-radius: 20%;
+  background-color: #5e5e5e;
+
+}
+.vip {
+  border-radius: 100%;
+}

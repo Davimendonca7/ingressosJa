@@ -11,10 +11,9 @@ const BoxLogin = () => {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [nomeDeUsuario, setNomeDeUsuario] = useState("");
 
 
-  const [nomeDeUsuarioVisible, setNomeDeUsuarioVisible] = useState(false);
+  
   const [emailVisible, setEmailVisible] = useState(false);
   const [senhaVisible, setSenhaVisible] = useState(false);
   
@@ -23,17 +22,16 @@ const BoxLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
    
-    console.log('teste', email, senha, nomeDeUsuario);
+    console.log('teste', email, senha);
 
     const data = {
-      username: nomeDeUsuario,
       email: email,
-      senha: senha,
+      senha: senha
   };
   const MySwal = withReactContent(Swal)
   axios.post('http://localhost:8080/cliente/autenticar', data)
       .then(response => {
-      
+        console.log('response', response.data);
           if(response.data.mensagem === 'Autenticado com sucesso'){
             
             MySwal.fire({
@@ -47,23 +45,15 @@ const BoxLogin = () => {
             });
             setEmail("");
             setSenha("");
-            setNomeDeUsuario("");
-            sessionStorage.NOME_USUARIO = nomeDeUsuario
-            sessionStorage.EMAIL_USUARIO = email
+            sessionStorage.USUARIO = email
             sessionStorage.LOGADO = true
             setTimeout(()=>{navigate('/')}, 2000)
           }
-          if(response.data.mensagem === 'Username incorreto'){
-           setNomeDeUsuarioVisible(true)
-          }else setNomeDeUsuarioVisible(false)
 
-          if(response.data.mensagem === 'Email incorreto'){
+          if(response.data.mensagem === 'Credenciais inválidas'){
             setEmailVisible(true)
            }else setEmailVisible(false)
 
-           if(response.data.mensagem === 'Senha incorreta'){
-            setSenhaVisible(true)
-           }else setSenhaVisible(false)
       })
       .catch(error => {
           console.error('Erro ao enviar requisição:', error);
@@ -81,20 +71,11 @@ const BoxLogin = () => {
       
 
         <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="email">Nome de usuário</label>
-            <div className="input-icon">
-            <i class='bx bx-user'></i>
-            <input type="text" name="email" placeholder="Digite seu nome de usuário" value={nomeDeUsuario} onChange={(e) => setNomeDeUsuario(e.target.value)} />
-            </div>
-            {nomeDeUsuarioVisible && (<p className='alert-input'>Usuário inválido</p>)}
-          </div>
           <div>
-            <label htmlFor="email">E-mail</label>
+            <label htmlFor="email">E-mail ou Nome de usuário</label>
             <div className="input-icon">
             <i class='bx bx-user'></i>
-            {emailVisible && (<p className='alert-input'>E-mail não encontrado</p>)}
-            <input type="email" name="email" placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="text" name="email" placeholder="Digite seu e-mail ou nome de usuário" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
           </div>
             <div>
@@ -103,8 +84,9 @@ const BoxLogin = () => {
               <i class='bx bx-lock-alt'></i>
               <input type="password" name="senha" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
               </div>
-              {senhaVisible && (<p className='alert-input'>Senha não coincide com o usuário</p>)}
+         
             </div>          
+            {emailVisible && (<p className='alert-input'>Credenciais inválidas</p>)}
           <input type="submit" value={'Entrar'} className='btnSubmit' />
         </form>
       </div>

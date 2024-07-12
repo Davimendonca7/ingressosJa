@@ -11,7 +11,7 @@ import Conta from './Conta';
 
 function App() {
   
-  const [dataCidade, setDataCidade] = useState('')
+  const [dataCidade, setDataCidade] = useState(['Carregando....'])
   const [dataFilmeSelecionado, setDataFilmeSelecionado] = useState([])
   const hanleDataChange = (data) =>{
     // console.log('pai', data);
@@ -36,7 +36,7 @@ function App() {
           <Route path='/cadastrar' element={<Cadastrar/>}/>
           <Route path='/filme' element={<SpecificFilm filmeSelecionado={dataFilmeSelecionado} />}/>
           <Route path='/conta/:nomeConta' element={<Conta/>}/>
-          <Route path='/comprar-ingresso/:idSessao'  element={<ComprarIngresso cidade={dataCidade} nome={dataFilmeSelecionado[0]} url={dataFilmeSelecionado[1]}/>} />
+          <Route path='/comprar-ingresso/:idSessao/:idSala/:hora'  element={<ComprarIngresso cidade={dataCidade} nome={dataFilmeSelecionado[0]} url={dataFilmeSelecionado[1]}/>} />
       </Routes>
     </BrowserRouter>
     

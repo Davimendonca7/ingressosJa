@@ -72,7 +72,7 @@ const Header = ({onDataChanged}) => {
         </div>
         <div className="user">
          
-            {sessionStorage.getItem('EMAIL_USUARIO') === null ? (<button 
+            {sessionStorage.getItem('USUARIO') === null ? (<button 
                 onClick={()=>{
                     if(openModalUser === true){
                         setOpenModalUser(false)

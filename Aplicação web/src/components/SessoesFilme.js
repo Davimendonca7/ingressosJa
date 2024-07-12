@@ -55,10 +55,10 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                 idFilme: idFilme
               }
             
-            console.log('response filtro', filtro);
+            console.log('response filtroaaa', filtro);
             axios.post(`http://localhost:8080/sessoes/filtro`, filtro)
             .then(response => {
-                console.log('response filtro', response.data);
+                console.log('response filtrobbbb', response.data);
                 setSessoes(response.data)
             })
             .catch(error => {
@@ -120,7 +120,7 @@ const SessoesFilme = ({ idFilme, idCinema }) => {
                 const sep = sessao.dataHora.split(' ')
                
                 const dateFormat = formatDate(sep[0])
-                return <Link className='sessao-item' key={sessao.idSessao} to={`/comprar-ingresso/${sessao.idSessao}`}>
+                return <Link className='sessao-item' key={sessao.idSessao} to={`/comprar-ingresso/${sessao.idSessao}/${sessao.idSala}/${dateFormat}`}>
                 <p className='titulo-data'>{dateFormat}</p>
                 <p className='titulo-hora'>{sep[1]}</p>
                 <p>{sessao.tipoSessao}</p>

@@ -1,7 +1,12 @@
 import React from 'react'
 import './MenuLateralCompra.css'
+import { useParams } from 'react-router-dom';
 const MenuLateralComprar = ({cidade, nome ,url}) => {
-  console.log('city', cidade);
+  const {hora} = useParams()
+
+  const horaSplit = hora.split(',')
+  const dia = horaSplit[1].split(' ')
+  console.log('dia', dia);
   return (
     <div className='menu'>
       <h2 className='titulo-compra'>RESUMO DA COMPRA</h2>
@@ -12,9 +17,9 @@ const MenuLateralComprar = ({cidade, nome ,url}) => {
         </div>
         <div className="menu-item">
             <div className="bg-col">
-            <i className='tam'>22</i>
+            <i className='tam'>{dia[1]}</i>
             </div>
-            <p>{cidade[0]}</p>
+            <p>{dia[2]}</p>
         </div>
         <div className="menu-item">
             <div className="bg-col">

@@ -1,135 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Assentos.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Assentos = () => {
-  const assentos = [
-    // { numero: 'A1', disponivel: true },
-    { numero: 'A2', disponivel: false },
-    { numero: 'A3', disponivel: true },
-    { numero: 'A4', disponivel: true },
-    { numero: 'A5', disponivel: false },
-    { numero: 'A6', disponivel: true },
-    { numero: 'A7', disponivel: false },
-    { numero: 'A8', disponivel: true },
-    { numero: 'A9', disponivel: true },
-    { numero: 'A10', disponivel: false },
-    { numero: 'B1', disponivel: true },
-    { numero: 'B2', disponivel: false },
-    { numero: 'B3', disponivel: true },
-    { numero: 'B4', disponivel: true },
-    { numero: 'B5', disponivel: false },
-    { numero: 'B6', disponivel: true },
-    { numero: 'B7', disponivel: false },
-    { numero: 'B8', disponivel: true },
-    { numero: 'B9', disponivel: true },
-    { numero: 'B10', disponivel: false },
-    { numero: 'C1', disponivel: true },
-    { numero: 'C2', disponivel: false },
-    { numero: 'C3', disponivel: true },
-    { numero: 'C4', disponivel: true },
-    { numero: 'C5', disponivel: false },
-    { numero: 'C6', disponivel: true },
-    { numero: 'C7', disponivel: false },
-    { numero: 'C8', disponivel: true },
-    { numero: 'C9', disponivel: true },
-    { numero: 'C10', disponivel: false },
-    { numero: 'D1', disponivel: true },
-    { numero: 'D2', disponivel: false },
-    { numero: 'D3', disponivel: true },
-    { numero: 'D4', disponivel: true },
-    { numero: 'D5', disponivel: false },
-    { numero: 'D6', disponivel: true },
-    { numero: 'D7', disponivel: false },
-    { numero: 'D8', disponivel: true },
-    { numero: 'D9', disponivel: true },
-    { numero: 'D10', disponivel: false },
-    { numero: 'E1', disponivel: true },
-    { numero: 'E2', disponivel: false },
-    { numero: 'E3', disponivel: true },
-    { numero: 'E4', disponivel: true },
-    { numero: 'E5', disponivel: false },
-    { numero: 'E6', disponivel: true },
-    { numero: 'E7', disponivel: false },
-    { numero: 'E8', disponivel: true },
-    { numero: 'E9', disponivel: true },
-    { numero: 'E10', disponivel: false },
-    { numero: 'F1', disponivel: true },
-    { numero: 'F2', disponivel: false },
-    { numero: 'F3', disponivel: true },
-    { numero: 'F4', disponivel: true },
-    { numero: 'F5', disponivel: false },
-    { numero: 'F6', disponivel: true },
-    { numero: 'F7', disponivel: false },
-    { numero: 'F8', disponivel: true },
-    { numero: 'F9', disponivel: true },
-    { numero: 'F10', disponivel: false },
-    { numero: 'G1', disponivel: true },
-    { numero: 'G2', disponivel: false },
-    { numero: 'G3', disponivel: true },
-    { numero: 'G4', disponivel: true },
-    { numero: 'G5', disponivel: false },
-    { numero: 'G6', disponivel: true },
-    { numero: 'G7', disponivel: false },
-    { numero: 'G8', disponivel: true },
-    { numero: 'G9', disponivel: true },
-    { numero: 'G10', disponivel: false },
-    { numero: 'H1', disponivel: true },
-    { numero: 'H2', disponivel: false },
-    { numero: 'H3', disponivel: true },
-    { numero: 'H4', disponivel: true },
-    { numero: 'H5', disponivel: false },
-    { numero: 'H6', disponivel: true },
-    { numero: 'H7', disponivel: false },
-    { numero: 'H8', disponivel: true },
-    { numero: 'H9', disponivel: true },
-    { numero: 'H10', disponivel: false },
-    { numero: 'I1', disponivel: true },
-    { numero: 'I2', disponivel: false },
-    { numero: 'I3', disponivel: true },
-    { numero: 'I4', disponivel: true },
-    { numero: 'I5', disponivel: false },
-    { numero: 'I6', disponivel: true },
-    { numero: 'I7', disponivel: false },
-    { numero: 'I8', disponivel: true },
-    { numero: 'I9', disponivel: true },
-    { numero: 'I10', disponivel: false },
-    { numero: 'J1', disponivel: true },
-    { numero: 'J2', disponivel: false },
-    { numero: 'J3', disponivel: true },
-    { numero: 'J4', disponivel: true },
-    { numero: 'J5', disponivel: false },
-    { numero: 'J6', disponivel: true },
-    { numero: 'J7', disponivel: false },
-    { numero: 'J8', disponivel: true },
-    { numero: 'J9', disponivel: true },
-    { numero: 'J10', disponivel: false },
-    { numero: 'K1', disponivel: true },
-    { numero: 'K2', disponivel: false },
-    { numero: 'K3', disponivel: true },
-    { numero: 'K4', disponivel: true },
-    { numero: 'K5', disponivel: false },
-    { numero: 'K6', disponivel: true },
-    { numero: 'K7', disponivel: false },
-    { numero: 'K8', disponivel: true },
-    { numero: 'K9', disponivel: true },
-    { numero: 'K10', disponivel: false },
-    { numero: 'L1', disponivel: true },
-    { numero: 'L2', disponivel: false },
-    { numero: 'L3', disponivel: true },
-    { numero: 'L4', disponivel: true },
-    { numero: 'L5', disponivel: false },
-    { numero: 'L6', disponivel: true },
-    { numero: 'L7', disponivel: false },
-    { numero: 'L8', disponivel: true },
-    { numero: 'L9', disponivel: true },
-    { numero: 'L10', disponivel: false },
-    { numero: 'L20', disponivel: true },
-    { numero: 'E15', disponivel: false },
-    
-  ];
+  const { idSessao, idSala } = useParams();
+  const [assentos, setAssentos] = useState([]);
+  const [maxRow, setMaxRow] = useState('A');
+  const [maxColumn, setMaxColumn] = useState(1);
+  const [json, setJson] = useState([])
+ 
 
-  const totalRows = 12; // A até M
-  const totalColumns = 20; // 1 até 10
+  
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/assento/sessao/${idSessao}/sala/${idSala}`)
+      .then(response => {
+        const assentos = response.data;
+        setAssentos(assentos);
+        console.log('assentos', assentos);
+        // Determina a última linha e coluna presentes nos dados recebidos
+        const rows = assentos.map(a => a.numero[0]);
+        const columns = assentos.map(a => parseInt(a.numero.slice(1)));
+
+        const maxRow = String.fromCharCode(Math.max(...rows.map(r => r.charCodeAt(0))));
+        const maxColumn = Math.max(...columns);
+
+        setMaxRow(maxRow);
+        setMaxColumn(maxColumn);
+      })
+      .catch(error => {
+        console.error('Erro ao enviar requisição:', error);
+      });
+  }, [idSessao, idSala]);
+
+  const totalRows = maxRow.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
+  const totalColumns = maxColumn;
 
   const rows = Array.from({ length: totalRows }, (_, i) => String.fromCharCode(65 + i));
   const columns = Array.from({ length: totalColumns }, (_, i) => i + 1);
@@ -148,14 +54,45 @@ const Assentos = () => {
             {columns.map((col) => {
               const seatNumber = `${row}${col}`;
               const assento = assentos.find(a => a.numero === seatNumber);
+              // console.log(assento.tipo);
               return (
                 <button
                   key={seatNumber}
-                  value={seatNumber}
-                  className={`assento ${assento ? (assento.disponivel ? 'disponivel' : 'ocupado') : ''}`}
-                  onClick={(e)=>{console.log(e.target.value)}}
+                  value={assento && assento.idAssento !== undefined ? assento.idAssento : seatNumber}
+                  className={`assento ${assento ? (assento.disponivel ? 'disponivel' : 'ocupado') : ''} ${assento && assento.tipo ? assento.tipo : ''} ${seatNumber}`}
+                  onClick={(e) => {
+                    const assentoDiv = document.querySelector(`.${seatNumber}`);
+                    const idAssento = e.target.value;
+                
+                    const index = json.findIndex(item => item.assento === idAssento);
+                    
+                    if (index !== -1) {
+                        
+                        const updatedJson = json.filter(item => item.assento !== idAssento);
+                        setJson(updatedJson);
+                        assentoDiv.style.backgroundColor = '#ffffff'; 
+                        
+                    } else {
+                        
+                        const agora = new Date();
+                        const horaAtual = agora.toLocaleTimeString();
+                        const data = {
+                            dataHora: horaAtual,
+                            cliente: sessionStorage.ID_USUARIO,
+                            sessao: idSessao,
+                            assento: idAssento,
+                            preco: 20.2
+                        };
+                
+                        setJson((prevJson) => [...prevJson, data]);
+                        assentoDiv.style.backgroundColor = '#fff200'; 
+                        console.log('JSON para compra', [...json, data]);
+                    }
+                }}
+                
+                  disabled={assento ? !assento.disponivel : true}
                 >
-                  {assento ? (assento.disponivel ? '' : '') : ''}
+                  
                 </button>
               );
             })}
@@ -163,11 +100,19 @@ const Assentos = () => {
         ))}
       </div>
       <div className="legenda">
-        <div className="col-assento">
-        <div className="assento-disponivel"></div><p>Disponível</p>
+      <div className="col-assento"
+      style={{marginBottom: '30px'}}>
+          <div className="assento-disponivel vip"></div><p>Ingresso vip</p>
+          <div className="assento-disponivel normal"></div><p>Ingresso normal</p>
         </div>
         <div className="col-assento">
-        <div className="assento-indisponivel"></div><p>Indisponível</p>
+          <div className="assento-disponivel"></div><p>Disponível</p>
+        </div>
+        <div className="col-assento">
+          <div className="assento-indisponivel"></div><p>Indisponível</p>
+        </div>
+        <div className="col-assento">
+          <div className="assento-selecionado"></div><p>Selecionado</p>
         </div>
       </div>
     </div>
