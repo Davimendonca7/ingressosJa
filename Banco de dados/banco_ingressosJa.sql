@@ -16,18 +16,12 @@ capacidade int,
 fkCinema int,
 foreign key (fkCinema) references cinema(idCinema));
 
-CREATE TABLE tipo(
-idTipo INT PRIMARY KEY AUTO_INCREMENT,
-descricao varchar(100)
-);
-
 CREATE TABLE assento(
 idAssento INT PRIMARY KEY AUTO_INCREMENT,
 fkSala int,
 numero varchar(4),
-fkTipo int,
-foreign key (fkSala) references sala(idSala),
-foreign key (fkTipo) references tipo(idTipo));
+Tipo varchar(19),
+foreign key (fkSala) references sala(idSala));
 
 CREATE TABLE filme(
 idFilme INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,6 +41,8 @@ CREATE TABLE cliente(
 	senha VARCHAR(50),
     telefone char(11),
     cpf char(11));
+
+select * from cliente;
 
 CREATE TABLE sessao(
 idSessao INT PRIMARY KEY AUTO_INCREMENT,
@@ -138,10 +134,6 @@ INSERT INTO sala (nome, capacidade, fkCinema) VALUES
 ('Sala 2', 200, 14);
 select * from sala;
 
-INSERT INTO tipo (descricao) VALUES
-('VIP'),
-('Normal');
-
 INSERT INTO filme (titulo, descricao, capa, genero, duracaoMin, classificacao, exibicao) VALUES
 ('O Poderoso Chefão', 'A saga de uma família de mafiosos italo-americanos e suas lutas pelo poder.', 'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg', 'Drama', 175, '18+', 'Em cartaz'),
 ('Vingadores: Ultimato', 'Os Vingadores precisam unir forças para derrotar Thanos e salvar o universo.', 'https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg', 'Ação', 181, '12+', 'Em cartaz'),
@@ -158,313 +150,324 @@ INSERT INTO filme (titulo, descricao, capa, genero, duracaoMin, classificacao, e
 select f.idFilme, f.titulo, f.exibicao from filme as f;
 
 -- Cinema 1, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(1, 'A1', 1),
-(1, 'A2', 2),
-(1, 'A3', 2),
-(1, 'A4', 1),
-(1, 'A5', 1),
-(1, 'A6', 2),
-(1, 'A7', 2),
-(1, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(1, 'A1', 'normal'),
+(1, 'A2', 'vip'),
+(1, 'A3', 'vip'),
+(1, 'A4', 'normal'),
+(1, 'A5', 'normal'),
+(1, 'A6', 'vip'),
+(1, 'A7', 'vip'),
+(1, 'A8', 'normal');
 
 -- Cinema 1, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(2, 'B1', 1),
-(2, 'B2', 2),
-(2, 'B3', 2),
-(2, 'B4', 1),
-(2, 'B5', 1),
-(2, 'B6', 2),
-(2, 'B7', 2),
-(2, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(2, 'B1', 'normal'),
+(2, 'B2', 'vip'),
+(2, 'B3', 'vip'),
+(2, 'B4', 'normal'),
+(2, 'B5', 'normal'),
+(2, 'B6', 'vip'),
+(2, 'B7', 'vip'),
+(2, 'B8', 'normal');
 
 -- Cinema 2, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(3, 'A1', 1),
-(3, 'A2', 2),
-(3, 'A3', 2),
-(3, 'A4', 1),
-(3, 'A5', 1),
-(3, 'A6', 2),
-(3, 'A7', 2),
-(3, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(3, 'A1', 'normal'),
+(3, 'A2', 'vip'),
+(3, 'A3', 'vip'),
+(3, 'A4', 'normal'),
+(3, 'A5', 'normal'),
+(3, 'A6', 'vip'),
+(3, 'A7', 'vip'),
+(3, 'A8', 'normal');
 
 -- Cinema 2, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(4, 'B1', 1),
-(4, 'B2', 2),
-(4, 'B3', 2),
-(4, 'B4', 1),
-(4, 'B5', 1),
-(4, 'B6', 2),
-(4, 'B7', 2),
-(4, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(4, 'B1', 'normal'),
+(4, 'B2', 'vip'),
+(4, 'B3', 'vip'),
+(4, 'B4', 'normal'),
+(4, 'B5', 'normal'),
+(4, 'B6', 'vip'),
+(4, 'B7', 'vip'),
+(4, 'B8', 'normal');
 
 -- Cinema 3, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(5, 'A1', 1),
-(5, 'A2', 2),
-(5, 'A3', 2),
-(5, 'A4', 1),
-(5, 'A5', 1),
-(5, 'A6', 2),
-(5, 'A7', 2),
-(5, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(5, 'A1', 'normal'),
+(5, 'A2', 'vip'),
+(5, 'A3', 'vip'),
+(5, 'A4', 'normal'),
+(5, 'A5', 'normal'),
+(5, 'A6', 'vip'),
+(5, 'A7', 'vip'),
+(5, 'A8', 'normal');
 
 -- Cinema 3, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(6, 'B1', 1),
-(6, 'B2', 2),
-(6, 'B3', 2),
-(6, 'B4', 1),
-(6, 'B5', 1),
-(6, 'B6', 2),
-(6, 'B7', 2),
-(6, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(6, 'B1', 'normal'),
+(6, 'B2', 'vip'),
+(6, 'B3', 'vip'),
+(6, 'B4', 'normal'),
+(6, 'B5', 'normal'),
+(6, 'B6', 'vip'),
+(6, 'B7', 'vip'),
+(6, 'B8', 'normal');
 
 -- Cinema 4, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(7, 'A1', 1),
-(7, 'A2', 2),
-(7, 'A3', 2),
-(7, 'A4', 1),
-(7, 'A5', 1),
-(7, 'A6', 2),
-(7, 'A7', 2),
-(7, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(7, 'A1', 'normal'),
+(7, 'A2', 'vip'),
+(7, 'A3', 'vip'),
+(7, 'A4', 'normal'),
+(7, 'A5', 'normal'),
+(7, 'A6', 'vip'),
+(7, 'A7', 'vip'),
+(7, 'A8', 'normal');
 
 -- Cinema 4, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(8, 'B1', 1),
-(8, 'B2', 2),
-(8, 'B3', 2),
-(8, 'B4', 1),
-(8, 'B5', 1),
-(8, 'B6', 2),
-(8, 'B7', 2),
-(8, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(8, 'B1', 'normal'),
+(8, 'B2', 'vip'),
+(8, 'B3', 'vip'),
+(8, 'B4', 'normal'),
+(8, 'B5', 'normal'),
+(8, 'B6', 'vip'),
+(8, 'B7', 'vip'),
+(8, 'B8', 'normal');
 
 -- Cinema 5, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(9, 'A1', 1),
-(9, 'A2', 2),
-(9, 'A3', 2),
-(9, 'A4', 1),
-(9, 'A4', 1),
-(9, 'A5', 1),
-(9, 'A6', 2),
-(9, 'A7', 2),
-(9, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(9, 'A1', 'normal'),
+(9, 'A2', 'vip'),
+(9, 'A3', 'vip'),
+(9, 'A4', 'normal'),
+(9, 'A4', 'normal'),
+(9, 'A5', 'normal'),
+(9, 'A6', 'vip'),
+(9, 'A7', 'vip'),
+(9, 'A8', 'normal');
 
 -- Cinema 5, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(10, 'B1', 1),
-(10, 'B2', 2),
-(10, 'B3', 2),
-(10, 'B4', 1),
-(10, 'B5', 1),
-(10, 'B6', 2),
-(10, 'B7', 2),
-(10, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(10, 'B1', 'normal'),
+(10, 'B2', 'vip'),
+(10, 'B3', 'vip'),
+(10, 'B4', 'normal'),
+(10, 'B5', 'normal'),
+(10, 'B6', 'vip'),
+(10, 'B7', 'vip'),
+(10, 'B8', 'normal');
 
 -- Cinema 6, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(11, 'A1', 1),
-(11, 'A2', 2),
-(11, 'A3', 2),
-(11, 'A4', 1),
-(11, 'A5', 1),
-(11, 'A6', 2),
-(11, 'A7', 2),
-(11, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(11, 'A1', 'normal'),
+(11, 'A2', 'vip'),
+(11, 'A3', 'vip'),
+(11, 'A4', 'normal'),
+(11, 'A5', 'normal'),
+(11, 'A6', 'vip'),
+(11, 'A7', 'vip'),
+(11, 'A8', 'normal');
 
 -- Cinema 6, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(12, 'B1', 1),
-(12, 'B2', 2),
-(12, 'B3', 2),
-(12, 'B4', 1),
-(12, 'B5', 1),
-(12, 'B6', 2),
-(12, 'B7', 2),
-(12, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(12, 'B1', 'normal'),
+(12, 'B2', 'vip'),
+(12, 'B3', 'vip'),
+(12, 'B4', 'normal'),
+(12, 'B5', 'normal'),
+(12, 'B6', 'vip'),
+(12, 'B7', 'vip'),
+(12, 'B8', 'normal');
 
 -- Cinema 7, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(13, 'A1', 1),
-(13, 'A2', 2),
-(13, 'A3', 2),
-(13, 'A4', 1),
-(13, 'A5', 1),
-(13, 'A6', 2),
-(13, 'A7', 2),
-(13, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(13, 'A1', 'normal'),
+(13, 'A2', 'vip'),
+(13, 'A3', 'vip'),
+(13, 'A4', 'normal'),
+(13, 'A5', 'normal'),
+(13, 'A6', 'vip'),
+(13, 'A7', 'vip'),
+(13, 'A8', 'normal');
 
--- Cinema 7, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(14, 'B1', 1),
-(14, 'B2', 2),
-(14, 'B3', 2),
-(14, 'B4', 1),
-(14, 'B5', 1),
-(14, 'B6', 2),
-(14, 'B7', 2),
-(14, 'B8', 1);
+	-- Cinema 7, Sala 2
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(14, 'B1', 'normal'),
+(14, 'B2', 'vip'),
+(14, 'B3', 'vip'),
+(14, 'B4', 'normal'),
+(14, 'B5', 'normal'),
+(14, 'B6', 'vip'),
+(14, 'B7', 'vip'),
+(14, 'B8', 'normal');
 
--- Cinema 8, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(15, 'A1', 1),
-(15, 'A2', 2),
-(15, 'A3', 2),
-(15, 'A4', 1),
-(15, 'A5', 1),
-(15, 'A6', 2),
-(15, 'A7', 2),
-(15, 'A8', 1);
+	-- Cinema 8, Sala 1
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(15, 'A1', 'normal'),
+(15, 'A2', 'vip'),
+(15, 'A3', 'vip'),
+(15, 'A4', 'normal'),
+(15, 'A5', 'normal'),
+(15, 'A6', 'vip'),
+(15, 'A7', 'vip'),
+(15, 'A8', 'normal');
+
 
 -- Cinema 8, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(16, 'B1', 1),
-(16, 'B2', 2),
-(16, 'B3', 2),
-(16, 'B4', 1),
-(16, 'B5', 1),
-(16, 'B6', 2),
-(16, 'B7', 2),
-(16, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(16, 'B1', 'normal'),
+(16, 'B2', 'vip'),
+(16, 'B3', 'vip'),
+(16, 'B4', 'normal'),
+(16, 'B5', 'normal'),
+(16, 'B6', 'vip'),
+(16, 'B7', 'vip'),
+(16, 'B8', 'normal');
+
 
 -- Cinema 9, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(17, 'A1', 1),
-(17, 'A2', 2),
-(17, 'A3', 2),
-(17, 'A4', 1),
-(17, 'A5', 1),
-(17, 'A6', 2),
-(17, 'A7', 2),
-(17, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(17, 'A1', 'normal'),
+(17, 'A2', 'vip'),
+(17, 'A3', 'vip'),
+(17, 'A4', 'normal'),
+(17, 'A5', 'normal'),
+(17, 'A6', 'vip'),
+(17, 'A7', 'vip'),
+(17, 'A8', 'normal');
+
 
 -- Cinema 9, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(18, 'B1', 1),
-(18, 'B2', 2),
-(18, 'B3', 2),
-(18, 'B4', 1),
-(18, 'B5', 1),
-(18, 'B6', 2),
-(18, 'B7', 2),
-(18, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(18, 'B1', 'normal'),
+(18, 'B2', 'vip'),
+(18, 'B3', 'vip'),
+(18, 'B4', 'normal'),
+(18, 'B5', 'normal'),
+(18, 'B6', 'vip'),
+(18, 'B7', 'vip'),
+(18, 'B8', 'normal');
 
 -- Cinema 10, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(19, 'A1', 1),
-(19, 'A2', 2),
-(19, 'A3', 2),
-(19, 'A4', 1),
-(19, 'A5', 1),
-(19, 'A6', 2),
-(19, 'A7', 2),
-(19, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(19, 'A1', 'normal'),
+(19, 'A2', 'vip'),
+(19, 'A3', 'vip'),
+(19, 'A4', 'normal'),
+(19, 'A5', 'normal'),
+(19, 'A6', 'vip'),
+(19, 'A7', 'vip'),
+(19, 'A8', 'normal');
+
 
 -- Cinema 10, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(20, 'B1', 1),
-(20, 'B2', 2),
-(20, 'B3', 2),
-(20, 'B4', 1),
-(20, 'B5', 1),
-(20, 'B6', 2),
-(20, 'B7', 2),
-(20, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(20, 'B1', 'normal'),
+(20, 'B2', 'vip'),
+(20, 'B3', 'vip'),
+(20, 'B4', 'normal'),
+(20, 'B5', 'normal'),
+(20, 'B6', 'vip'),
+(20, 'B7', 'vip'),
+(20, 'B8', 'normal');
+
 
 -- Cinema 11, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(21, 'A1', 1),
-(21, 'A2', 2),
-(21, 'A3', 2),
-(21, 'A4', 1),
-(21, 'A5', 1),
-(21, 'A6', 2),
-(21, 'A7', 2),
-(21, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(21, 'A1', 'normal'),
+(21, 'A2', 'vip'),
+(21, 'A3', 'vip'),
+(21, 'A4', 'normal'),
+(21, 'A5', 'normal'),
+(21, 'A6', 'vip'),
+(21, 'A7', 'vip'),
+(21, 'A8', 'normal');
+
 
 -- Cinema 11, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(22, 'B1', 1),
-(22, 'B2', 2),
-(22, 'B3', 2),
-(22, 'B4', 1),
-(22, 'B5', 1),
-(22, 'B6', 2),
-(22, 'B7', 2),
-(22, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(22, 'B1', 'normal'),
+(22, 'B2', 'vip'),
+(22, 'B3', 'vip'),
+(22, 'B4', 'normal'),
+(22, 'B5', 'normal'),
+(22, 'B6', 'vip'),
+(22, 'B7', 'vip'),
+(22, 'B8', 'normal');
+
 
 -- Cinema 12, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(23, 'A1', 1),
-(23, 'A2', 2),
-(23, 'A3', 2),
-(23, 'A4', 1),
-(23, 'A5', 1),
-(23, 'A6', 2),
-(23, 'A7', 2),
-(23, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(23, 'A1', 'normal'),
+(23, 'A2', 'vip'),
+(23, 'A3', 'vip'),
+(23, 'A4', 'normal'),
+(23, 'A5', 'normal'),
+(23, 'A6', 'vip'),
+(23, 'A7', 'vip'),
+(23, 'A8', 'normal');
+
 
 -- Cinema 12, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(24, 'B1', 1),
-(24, 'B2', 2),
-(24, 'B3', 2),
-(24, 'B4', 1),
-(24, 'B5', 1),
-(24, 'B6', 2),
-(24, 'B7', 2),
-(24, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(24, 'B1', 'normal'),
+(24, 'B2', 'vip'),
+(24, 'B3', 'vip'),
+(24, 'B4', 'normal'),
+(24, 'B5', 'normal'),
+(24, 'B6', 'vip'),
+(24, 'B7', 'vip'),
+(24, 'B8', 'normal');
+
 
 -- Cinema 13, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(25, 'A1', 1),
-(25, 'A2', 2),
-(25, 'A3', 2),
-(25, 'A4', 1),
-(25, 'A5', 1),
-(25, 'A6', 2),
-(25, 'A7', 2),
-(25, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(25, 'A1', 'normal'),
+(25, 'A2', 'vip'),
+(25, 'A3', 'vip'),
+(25, 'A4', 'normal'),
+(25, 'A5', 'normal'),
+(25, 'A6', 'vip'),
+(25, 'A7', 'vip'),
+(25, 'A8', 'normal');
+
 
 -- Cinema 13, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(26, 'B1', 1),
-(26, 'B2', 2),
-(26, 'B3', 2),
-(26, 'B4', 1),
-(26, 'B5', 1),
-(26, 'B6', 2),
-(26, 'B7', 2),
-(26, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(26, 'B1', 'normal'),
+(26, 'B2', 'vip'),
+(26, 'B3', 'vip'),
+(26, 'B4', 'normal'),
+(26, 'B5', 'normal'),
+(26, 'B6', 'vip'),
+(26, 'B7', 'vip'),
+(26, 'B8', 'normal');
 
 -- Cinema 14, Sala 1
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(27, 'A1', 1),
-(27, 'A2', 2),
-(27, 'A3', 2),
-(27, 'A4', 1),
-(27, 'A5', 1),
-(27, 'A6', 2),
-(27, 'A7', 2),
-(27, 'A8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(27, 'A1', 'normal'),
+(27, 'A2', 'vip'),
+(27, 'A3', 'vip'),
+(27, 'A4', 'normal'),
+(27, 'A5', 'normal'),
+(27, 'A6', 'vip'),
+(27, 'A7', 'vip'),
+(27, 'A8', 'normal');
+
 
 -- Cinema 14, Sala 2
-INSERT INTO assento (fkSala, numero, fkTipo) VALUES
-(28, 'B1', 1),
-(28, 'B2', 2),
-(28, 'B3', 2),
-(28, 'B4', 1),
-(28, 'B5', 1),
-(28, 'B6', 2),
-(28, 'B7', 2),
-(28, 'B8', 1);
+INSERT INTO assento (fkSala, numero, Tipo) VALUES
+(28, 'B1', 'normal'),
+(28, 'B2', 'vip'),
+(28, 'B3', 'vip'),
+(28, 'B4', 'normal'),
+(28, 'B5', 'normal'),
+(28, 'B6', 'vip'),
+(28, 'B7', 'vip'),
+(28, 'B8', 'normal');
 
 -- Cinema 1, Sala 1
 INSERT INTO sessao (fkSala, fkFilme, dataHora, tipoSessao) VALUES
@@ -682,12 +685,37 @@ INSERT INTO preco (dia, preco) VALUES
 INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 ('João da Silva', 'joao123', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901');
 
+-- Inserindo dados na tabela ingresso
+INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES
+(1, 6, 27, 1, '2024-06-28 12:00:00');
+
 select * from cliente;
 select * from ingresso;
 select * from filme;
 select * from sessao;
-select * from assento left join ingresso on fkAssento = idAssento;
--- Inserindo dados na tabela ingresso
 
-INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES
-(1, 1, 1, 1, '2024-06-28 12:00:00');
+
+
+select * from assento right join ingresso on fkAssento = idAssento where fkSessao = 1;
+
+select a.numero, a.tipo, s.nome from assento as a join sala as s on fkSala = idSala where idSala = 1;
+
+select a.* from assento as a join sala as s on fkSala = idSala where idSala = 1;
+
+SELECT a.idAssento as idAssento, a.numero, a.tipo, s.idSala FROM Assento a JOIN Sala s ON a.fkSala = s.idSala WHERE s.idSala = 4; 
+select * from ingresso where fkSessao = 1;
+
+SELECT a.idAssento, a.numero, i.idIngresso, a.tipo
+FROM assento AS a join ingresso as i on fkAssento = idAssento
+WHERE i.fkSessao = 1;
+
+
+SELECT * FROM sessao as s
+            JOIN sala as sa ON s.fkSala = sa.idSala 
+            JOIN cinema as c ON sa.fkCinema = c.idCinema 
+            JOIN filme as f ON s.fkFilme = f.idFilme 
+            WHERE DATE(s.dataHora) = "2024-07-07"
+            AND s.tipoSessao = "3D" 
+            AND c.idCinema = 1 
+            AND f.idFilme = 6;
+
