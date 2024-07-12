@@ -17,9 +17,13 @@ public interface AssentoRepository extends JpaRepository<Assento, Integer> {
     @Query(value = "SELECT a.idAssento as id_Assento, a.numero as numero_, a.tipo as tipo_, s.idSala as idSala_ " +
             "FROM Assento a JOIN Sala s ON a.fkSala = s.idSala " +
             "WHERE s.idSala = :idSala ", nativeQuery = true)
-    List<AssentosSessao> findAssentosSala(@Param("idSala") Integer idSala);
+    List<Assento> findAssentosSala(@Param("idSala") Integer idSala);
 
-    @Query(value = "SELECT * FROM Ingresso i WHERE i.fkSessao = :idSessao", nativeQuery = true)
+    @Query(value = "select a from Assento a join Sala s on a.sala.idSala = s.idSala where idSala = :idSala")
+    List<Assento> findAssentos(@Param("idSala") Integer idSala);
+
+
+    @Query(value = "SELECT i FROM Ingresso i WHERE i.sessao = :idSessao")
     List<Ingresso> findIngressos(@Param("idSessao") Integer idSessao);
 
 

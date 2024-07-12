@@ -5,58 +5,57 @@ import ingressosJa.models.Assento;
 import java.util.List;
 
 public class AssentosSessao {
-        private Integer id_Assento;
-        private String numero_;
-        private String tipo_;
-        private Integer idSala_;
-//        private Boolean ocupado;
+        private Integer idAssento;
+        private String numero;
+        private String tipo;
+        private Integer idSala;
+        private Boolean disponivel;
 
-        public AssentosSessao(Integer id_Assento, String numero_, String tipo_, Integer idSala_) {
-                this.id_Assento = id_Assento;
-                this.numero_ = numero_;
-                this.tipo_ = tipo_;
-                this.idSala_ = idSala_;
+        public AssentosSessao(Integer idAssento, String numero, String tipo, Integer idSala, Boolean disponivel) {
+                this.idAssento = idAssento;
+                this.numero = numero;
+                this.tipo = tipo;
+                this.idSala = idSala;
+                this.disponivel = disponivel;
         }
 
-
-//        public Boolean getOcupado() {
-//                return ocupado;
-//        }
-//
-//        public void setOcupado(Boolean ocupado) {
-//                this.ocupado = ocupado;
-//        }
-
-
-        public Integer getId_Assento() {
-                return id_Assento;
+        public Integer getIdAssento() {
+                return idAssento;
         }
 
-        public void setId_Assento(Integer id_Assento) {
-                this.id_Assento = id_Assento;
+        public void setIdAssento(Integer idAssento) {
+                this.idAssento = idAssento;
         }
 
-        public String getNumero_() {
-                return numero_;
+        public String getNumero() {
+                return numero;
         }
 
-        public void setNumero_(String numero_) {
-                this.numero_ = numero_;
+        public void setNumero(String numero) {
+                this.numero = numero;
         }
 
-        public String getTipo_() {
-                return tipo_;
+        public String getTipo() {
+                return tipo;
         }
 
-        public void setTipo_(String tipo_) {
-                this.tipo_ = tipo_;
+        public void setTipo(String tipo) {
+                this.tipo = tipo;
         }
 
-        public Integer getIdSala_() {
-                return idSala_;
+        public Integer getIdSala() {
+                return idSala;
         }
 
-        public void setIdSala_(Integer idSala_) {
-                this.idSala_ = idSala_;
+        public void setIdSala(Integer idSala) {
+                this.idSala = idSala;
+        }
+
+        public Boolean getDisponivel() {
+                return disponivel;
+        }
+
+        public void setDisponivel(Boolean disponivel) {
+                this.disponivel = disponivel;
         }
 }

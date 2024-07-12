@@ -18,25 +18,32 @@ public class AssentoService {
     private AssentoRepository assentoRepository;
 
     public List<AssentosSessao> listarAssentos(Integer idSessao, Integer idSala) {
-        List<AssentosSessao> assentos = assentoRepository.findAssentosSala(idSala);
-
         List<AssentosSessao> assentosAtualizados = new ArrayList<>();
 
+        List<Assento> assentos = assentoRepository.findAssentos(idSala);
         List<Ingresso> ingressos = assentoRepository.findIngressos(idSessao);
-        for(AssentosSessao assentosSessao : assentos){
-            System.out.println("teste " + assentosSessao);
-        }
-//        for(AssentosSessao assentosSessao : assentos){
-//            for(Ingresso ingresso : ingressos){
-//                if(assentosSessao.getIdAssento().equals(ingresso.getAssento())){
-//                    assentosSessao.setOcupado(true);
-//
-//                    assentosAtualizados.add(assentosSessao);
-//                }
-//            }
-//        }
 
-//        return assentosAtualizados;
-        return null;
+
+        for(Assento assentosSessao : assentos){
+            AssentosSessao assentoNovo = new AssentosSessao(
+                    assentosSessao.getIdAssento(),
+                    assentosSessao.getNumero(),
+                    assentosSessao.getTipo(),
+                    assentosSessao.getSala().getIdSala(),
+                    null
+            );
+
+            for(Ingresso ingresso : ingressos){
+                if(assentosSessao.getIdAssento().equals(ingresso.getAssento())){
+                    assentoNovo.setDisponivel(false);
+                }
+            }
+              if(assentoNovo.getDisponivel() == null){
+                    assentoNovo.setDisponivel(true);
+                }
+            assentosAtualizados.add(assentoNovo);
+        }
+        System.out.println(assentosAtualizados);
+        return assentosAtualizados;
     }
 }
