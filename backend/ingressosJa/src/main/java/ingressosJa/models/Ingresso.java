@@ -40,13 +40,6 @@ public class Ingresso {
     public Ingresso() {
     }
 
-//    public int getIdIngresso() {
-//        return idIngresso;
-//    }
-//
-//    public void setIdIngresso(int idIngresso) {
-//        this.idIngresso = idIngresso;
-//    }
 
     public String getDataHora() {
         return dataHora;
