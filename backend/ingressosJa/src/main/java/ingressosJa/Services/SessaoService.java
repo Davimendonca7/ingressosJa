@@ -24,6 +24,7 @@ public class SessaoService {
     }
 
     public List<Sessao> filtroSessao(FiltroSesssao filtroSesssao){
+        List<Sessao> listaAtualizada = new ArrayList<>();
 
         if(filtroSesssao.getTipoSessao().equals("Todos")){
          return sessaoRepository.findSessoesByDate(filtroSesssao.getData(), filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
@@ -35,10 +36,10 @@ public class SessaoService {
                     filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme()
             );
             if(lista.isEmpty()){
-                return null;
+                return listaAtualizada;
             }
             else{
-            List<Sessao> listaAtualizada = new ArrayList<>();
+
 
             for(Sessao sessao : lista){
                 Sessao sessao1 = new Sessao();
