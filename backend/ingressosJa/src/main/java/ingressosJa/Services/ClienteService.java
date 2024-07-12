@@ -30,22 +30,12 @@ public class ClienteService {
         }
     }
     public AutenticacaoResposta autenticarCliente(Cliente cliente){
-        Optional<Cliente> clienteOptional = clienteRepository.findByUsername(cliente.getUsername());
+        Optional<Cliente> response =  clienteRepository.autenticarUsuario(cliente.getEmail(), cliente.getSenha());
 
-        if(clienteOptional.isPresent()){
-            Cliente clienteEncontrado = clienteOptional.get();
-
-                if(clienteEncontrado.getEmail().equals(cliente.getEmail())){
-                    if(clienteEncontrado.getSenha().equals(cliente.getSenha())){
-                        return new AutenticacaoResposta(cliente, "Autenticado com sucesso");
-                    }else{
-                        return new AutenticacaoResposta(null, "Senha incorreta");
-                    }
-                }else{
-                    return new AutenticacaoResposta(null,"Email incorreto");
-                }
+        if (response.isPresent()) {
+            return new AutenticacaoResposta(response.get(), "Autenticado com sucesso");
         }else{
-            return new AutenticacaoResposta(null,"Username incorreto");
+            return new AutenticacaoResposta(null, "Credenciais inválidas");
         }
     }
     public List<Ingresso> buscarIngressos(Integer id){
