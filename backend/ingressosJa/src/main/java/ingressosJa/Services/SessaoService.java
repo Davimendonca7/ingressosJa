@@ -27,13 +27,31 @@ public class SessaoService {
         List<Sessao> listaAtualizada = new ArrayList<>();
 
         if(filtroSesssao.getTipoSessao().equals("Todos")){
-         return sessaoRepository.findSessoesByDate(filtroSesssao.getData(), filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
+
+            List<Sessao> lista = sessaoRepository.findSessoesByDate(
+                 filtroSesssao.getData(),
+                 filtroSesssao.getIdCinema(),
+                 filtroSesssao.getIdFilme()
+         );
+            for(Sessao sessao : lista){
+                Sessao sessao2 = new Sessao();
+
+                sessao2.setIdSessao(sessao.getIdSessao());
+                sessao2.setDataHora(sessao.getDataHora());
+                sessao2.setTipoSessao(sessao.getTipoSessao());
+                sessao2.setIdSala(sessao.getSala().getIdSala());
+
+                listaAtualizada.add(sessao2);
+            }
+
+            return listaAtualizada;
 
         }else{
             List<Sessao> lista =  sessaoRepository.findSessoesByDateAndTipoSessao(
                     filtroSesssao.getData(),
                     filtroSesssao.getTipoSessao(),
-                    filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme()
+                    filtroSesssao.getIdCinema(),
+                    filtroSesssao.getIdFilme()
             );
             if(lista.isEmpty()){
                 return listaAtualizada;
