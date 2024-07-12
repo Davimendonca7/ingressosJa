@@ -26,12 +26,18 @@ public class SessaoService {
     public List<Sessao> filtroSessao(FiltroSesssao filtroSesssao){
 
         if(filtroSesssao.getTipoSessao().equals("Todos")){
-
          return sessaoRepository.findSessoesByDate(filtroSesssao.getData(), filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
-        }else{
-            List<Sessao> lista =  sessaoRepository.findSessoesByDateAndTipoSessao(filtroSesssao.getData(), filtroSesssao.getTipoSessao(),
-                    filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme());
 
+        }else{
+            List<Sessao> lista =  sessaoRepository.findSessoesByDateAndTipoSessao(
+                    filtroSesssao.getData(),
+                    filtroSesssao.getTipoSessao(),
+                    filtroSesssao.getIdCinema(), filtroSesssao.getIdFilme()
+            );
+            if(lista.isEmpty()){
+                return null;
+            }
+            else{
             List<Sessao> listaAtualizada = new ArrayList<>();
 
             for(Sessao sessao : lista){
@@ -44,9 +50,10 @@ public class SessaoService {
 
                 listaAtualizada.add(sessao1);
             }
-            System.out.println(lista.get(0).getSala());
+//            System.out.println(lista.get(0).getSala());
 
             return listaAtualizada;
+            }
         }
     }
 }
