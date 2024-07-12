@@ -39,8 +39,6 @@ public class SessaoService {
                 return listaAtualizada;
             }
             else{
-
-
             for(Sessao sessao : lista){
                 Sessao sessao1 = new Sessao();
 
@@ -51,7 +49,6 @@ public class SessaoService {
 
                 listaAtualizada.add(sessao1);
             }
-//            System.out.println(lista.get(0).getSala());
 
             return listaAtualizada;
             }
