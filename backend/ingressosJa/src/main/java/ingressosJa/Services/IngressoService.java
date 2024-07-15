@@ -28,10 +28,10 @@ public class IngressoService {
                ingressoRepository.save(ingresso);
                return new IngressoResposta(ingresso, "Ingresso comprado com sucesso");
            }else{
-               throw new IllegalArgumentException("Assento Indisponível");
-           }    
+               return new IngressoResposta(null, "Assento Indisponível");
+           }
         } else {
-            throw new IllegalArgumentException("Sessão ou Assento não especificados no ingresso.");
+            return new IngressoResposta(null, "Sessão ou Assento não especificados no ingresso.");
         }
     }
 }
