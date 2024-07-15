@@ -18,13 +18,6 @@ public class IngressoController {
 
     @PostMapping
     public Ingresso VenderIngresso(@RequestBody Ingresso ingresso){
-//        Ingresso ingresso = new Ingresso();
-//        ingresso.setDataHora(request.getDataHora());
-//        ingresso.setCliente(request.getCliente());
-//        ingresso.setSessao(request.getSessao());
-//        ingresso.setAssento(request.getAssento());
-//        ingresso.setPreco(request.getPreco());
-
         System.out.println("Ingresso ==> " + ingresso);
         return ingressoService.venderIngresso(ingresso);
     }

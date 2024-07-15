@@ -72,12 +72,12 @@ fkSessao int,
 fkAssento int,
 fkPreco int,
 dataHora varchar(50),
+total decimal,
 foreign key (fkSessao) references sessao(idSessao),
 foreign key (fkPreco) references preco(idPreco),
 foreign key (fkCliente) references cliente(idCliente),
 foreign key (fkAssento) references assento(idAssento)
 );
-
 
 INSERT INTO cinema (idCinema, endereco, nome) VALUES
 (1, 'Avenida Paulista, 1000, São Paulo', 'Cinema Paulista'),
@@ -677,22 +677,23 @@ INSERT INTO preco (dia, preco) VALUES
 ('Segunda-feira', 20.00),
 ('Terça-feira', 20.00),
 ('Quarta-feira', 15.00),
-('Quinta-feira', 20.00),
-('Sexta-feira', 25.00),
-('Sábado', 30.00),
-('Domingo', 30.00);
+('Quinta-feira', 30.00),
+('Sexta-feira', 30.00),
+('Sábado', 40.00),
+('Domingo', 40.00);
 
 INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 ('João da Silva', 'joao123', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901');
 
 -- Inserindo dados na tabela ingresso
-INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora) VALUES
-(1, 6, 27, 1, '2024-06-28 12:00:00');
+INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora, total) VALUES
+(1, 6, 27, 1, '2024-06-28 12:00:00', 50.5);
 
 select * from cliente;
-select * from ingresso;
+select * from ingresso where fkSessao = 1 and fkAssento = 2;
 select * from filme;
 select * from sessao;
+select * from preco;
 
 
 
@@ -702,20 +703,8 @@ select a.numero, a.tipo, s.nome from assento as a join sala as s on fkSala = idS
 
 select a.* from assento as a join sala as s on fkSala = idSala where idSala = 1;
 
-SELECT a.idAssento as idAssento, a.numero, a.tipo, s.idSala FROM Assento a JOIN Sala s ON a.fkSala = s.idSala WHERE s.idSala = 4; 
-select * from ingresso where fkSessao = 1;
-
-SELECT a.idAssento, a.numero, i.idIngresso, a.tipo
-FROM assento AS a join ingresso as i on fkAssento = idAssento
-WHERE i.fkSessao = 1;
 
 
-SELECT * FROM sessao as s
-            JOIN sala as sa ON s.fkSala = sa.idSala 
-            JOIN cinema as c ON sa.fkCinema = c.idCinema 
-            JOIN filme as f ON s.fkFilme = f.idFilme 
-            WHERE DATE(s.dataHora) = "2024-07-07"
-            AND s.tipoSessao = "3D" 
-            AND c.idCinema = 1 
-            AND f.idFilme = 6;
+
+
 
