@@ -70,11 +70,9 @@ idIngresso INT PRIMARY KEY AUTO_INCREMENT,
 fkCliente int,
 fkSessao int,
 fkAssento int,
-fkPreco int,
 dataHora varchar(50),
 total decimal,
 foreign key (fkSessao) references sessao(idSessao),
-foreign key (fkPreco) references preco(idPreco),
 foreign key (fkCliente) references cliente(idCliente),
 foreign key (fkAssento) references assento(idAssento)
 );
@@ -686,8 +684,8 @@ INSERT INTO cliente (nome, username, email, senha, telefone, cpf) VALUES
 ('João da Silva', 'joao123', 'joao.silva@example.com', 'senha123', '11987654321', '12345678901');
 
 -- Inserindo dados na tabela ingresso
-INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, fkPreco, dataHora, total) VALUES
-(1, 6, 27, 1, '2024-06-28 12:00:00', 50.5);
+INSERT INTO ingresso (fkCliente, fkSessao, fkAssento, dataHora, total) VALUES
+(1, 6, 27, '2024-06-28 12:00:00', 50.5);
 
 select * from cliente;
 select * from ingresso where fkSessao = 1 and fkAssento = 2;

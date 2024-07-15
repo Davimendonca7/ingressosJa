@@ -33,10 +33,6 @@ public class Ingresso {
     private Integer assento;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "fkPreco")
-//    @JsonIgnore
-    private Integer preco;
-
     @Column(name = "total")
 //    @JsonIgnore
     private Double total;
@@ -53,29 +49,6 @@ public class Ingresso {
         this.dataHora = dataHora;
     }
 
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
-
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
-//
-//    public Sessao getSessao() {
-//        return sessao;
-//    }
-//
-//    public void setSessao(Sessao sessao) {
-//        this.sessao = sessao;
-//    }
-
-//    public Integer getIdIngresso() {
-//        return idIngresso;
-//    }
-//
-//    public void setIdIngresso(Integer idIngresso) {
-//        this.idIngresso = idIngresso;
-//    }
 
     public Integer getAssento() {
         return assento;
@@ -83,26 +56,6 @@ public class Ingresso {
 
     public void setAssento(Integer assento) {
         this.assento = assento;
-    }
-
-//    public Preco getPreco() {
-//        return preco;
-//    }
-//
-//    public void setPreco(Preco preco) {
-//        this.preco = preco;
-//    }
-
-    @Override
-    public String toString() {
-        return "Ingresso{" +
-                "idIngresso=" + idIngresso +
-                ", dataHora='" + dataHora + '\'' +
-                ", cliente=" + cliente +
-                ", sessao=" + sessao +
-                ", assento=" + assento +
-                ", preco=" + preco +
-                '}';
     }
 
     public int getCliente() {
@@ -120,12 +73,5 @@ public class Ingresso {
     public void setSessao(int sessao) {
         this.sessao = sessao;
     }
-
-    public int getPreco() {
-        return preco;
-    }
-
-    public void setPreco(int preco) {
-        this.preco = preco;
-    }
+    
 }
