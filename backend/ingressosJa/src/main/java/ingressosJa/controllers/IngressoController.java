@@ -1,5 +1,6 @@
 package ingressosJa.controllers;
 
+import ingressosJa.DTO.IngressoResposta;
 import ingressosJa.Services.IngressoService;
 import ingressosJa.models.Ingresso;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,7 @@ public class IngressoController {
     private IngressoService ingressoService;
 
     @PostMapping
-    public Ingresso VenderIngresso(@RequestBody Ingresso ingresso){
-        System.out.println("Ingresso ==> " + ingresso);
+    public IngressoResposta VenderIngresso(@RequestBody Ingresso ingresso){
         return ingressoService.venderIngresso(ingresso);
     }
 

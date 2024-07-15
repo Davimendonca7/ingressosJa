@@ -37,6 +37,10 @@ public class Ingresso {
 //    @JsonIgnore
     private Integer preco;
 
+    @Column(name = "total")
+//    @JsonIgnore
+    private Double total;
+
     public Ingresso() {
     }
 

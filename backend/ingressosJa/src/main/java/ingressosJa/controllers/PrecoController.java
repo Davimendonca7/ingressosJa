@@ -15,7 +15,7 @@ public class PrecoController {
     @Autowired
     private PrecoService precoService;
 
-    @GetMapping()   
+    @GetMapping()
     public List<Preco> listarPrecos(){
         return precoService.listarPrecos();
     }

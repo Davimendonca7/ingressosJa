@@ -1,5 +1,6 @@
 package ingressosJa.Services;
 
+import ingressosJa.DTO.IngressoResposta;
 import ingressosJa.models.Assento;
 import ingressosJa.models.Cliente;
 import ingressosJa.models.Ingresso;
@@ -18,13 +19,17 @@ public class IngressoService {
 
     @Autowired
     private IngressoRepository ingressoRepository;
-    @Autowired
-    private ClienteRepository clienteRepository;
 
-    public Ingresso venderIngresso(Ingresso ingresso) {
+    public IngressoResposta venderIngresso(Ingresso ingresso) {
 
         if (ingresso.getSessao() != 0 && ingresso.getAssento() != null) {
-            return ingressoRepository.save(ingresso);
+           Optional<Ingresso> response = ingressoRepository.verificarIngresso(ingresso.getSessao(), ingresso.getAssento());
+           if(response.isEmpty()) {
+               ingressoRepository.save(ingresso);
+               return new IngressoResposta(ingresso, "Ingresso comprado com sucesso");
+           }else{
+               throw new IllegalArgumentException("Assento Indisponível");
+           }    
         } else {
             throw new IllegalArgumentException("Sessão ou Assento não especificados no ingresso.");
         }
