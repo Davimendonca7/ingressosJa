@@ -18,7 +18,7 @@ public class IngressoController {
     private IngressoService ingressoService;
 
     @PostMapping
-    public IngressoResposta VenderIngresso(@RequestBody Ingresso ingresso){
+    public IngressoResposta VenderIngresso(@RequestBody List<Ingresso> ingresso){
         return ingressoService.venderIngresso(ingresso);
     }
 

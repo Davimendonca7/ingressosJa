@@ -2,20 +2,22 @@ package ingressosJa.DTO;
 
 import ingressosJa.models.Ingresso;
 
+import java.util.List;
+
 public class IngressoResposta {
-    private Ingresso ingresso;
+    private List<Ingresso> ingresso;
     private String mensagem;
 
-    public IngressoResposta(Ingresso ingresso, String mensagem) {
+    public IngressoResposta(List<Ingresso> ingresso, String mensagem) {
         this.ingresso = ingresso;
         this.mensagem = mensagem;
     }
 
-    public Ingresso getIngresso() {
+    public List<Ingresso> getIngresso() {
         return ingresso;
     }
 
-    public void setIngresso(Ingresso ingresso) {
+    public void setIngresso(List<Ingresso> ingresso) {
         this.ingresso = ingresso;
     }
 

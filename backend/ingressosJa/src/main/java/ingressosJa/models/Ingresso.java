@@ -73,5 +73,5 @@ public class Ingresso {
     public void setSessao(int sessao) {
         this.sessao = sessao;
     }
-    
+
 }
