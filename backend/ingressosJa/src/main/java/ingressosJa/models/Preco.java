@@ -9,8 +9,8 @@ public class Preco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "idPreco")
+    private Integer id;
 
     @Column(name = "dia")
     private String dia;

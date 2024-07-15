@@ -22,6 +22,7 @@ public class IngressoService {
     private ClienteRepository clienteRepository;
 
     public Ingresso venderIngresso(Ingresso ingresso) {
+
         if (ingresso.getSessao() != 0 && ingresso.getAssento() != null) {
             return ingressoRepository.save(ingresso);
         } else {
